@@ -1,22 +1,22 @@
 import React from 'react';
-import Image from 'next/image'; // Import the Next.js Image component
+import Image from 'next/image';
 
 // Define a type for the image array, assuming strings are URLs
 type ImageProps = {
   src: string;
-  alt: string; // Add alt text for accessibility
+  alt: string;
 };
 
 export default function Card({
   title,
   children,
   icon,
-  images = [], // New prop for an array of 8 images, with a default empty array
+  images = [],
 }: {
   title: string;
   children: React.ReactNode;
   icon?: string;
-  images?: ImageProps[]; // Define the new images prop type
+  images?: ImageProps[];
 }) {
   return (
     <div className="card">
@@ -36,9 +36,13 @@ export default function Card({
               <Image
                 src={img.src}
                 alt={img.alt || `Card image ${index + 1}`}
-                layout="fill" // Ensures the image fills the parent container
-                objectFit="cover" // Crops to fill the container, maintaining aspect ratio
-                quality={75} // Optimizes image quality
+                fill={true} // 🌟 FIX: Use 'fill' prop instead of deprecated 'layout="fill"'
+                sizes="(max-width: 767px) 50vw, 25vw" // Required for 'fill' and good for responsive loading
+                style={{
+                    objectFit: "cover", // Crops to fill the container
+                // Ensures the image respects the parent container
+                }}
+                quality={75}
               />
             </div>
           ))}
@@ -48,39 +52,39 @@ export default function Card({
       {/* CSS for the Card Component */}
       <style jsx>{`
         .card {
-          border: 1px solid var(--border); /* assuming a card style */
+          border: 1px solid var(--border);
           border-radius: 0.5rem;
-          overflow: hidden; /* important to contain the images */
-          background: var(--bgElev); /* assuming a background style */
+          overflow: hidden;
+          background: var(--bgElev);
         }
 
         .image-gallery {
           display: grid;
-          /* 4 columns on desktop/tablet */
+          /* Desktop: 4 columns */
           grid-template-columns: repeat(4, 1fr); 
-          gap: 0px; /* remove gaps between images if you want a tight grid */
+          gap: 0px; 
           border-top: 1px solid var(--border);
         }
 
         .image-container {
-          position: relative;
-          /* This creates a perfect square container for each image (1:1 aspect ratio) */
+          position: relative; /* 💡 CRITICAL: Still required for 'fill' to work */
+          /* Creates a perfect square container */
           padding-bottom: 100%; 
           overflow: hidden;
         }
 
-        /* Mobile Adjustments (under 768px) */
+        /* --- Mobile Adjustments (under 768px) --- */
         @media (max-width: 767px) {
           .image-gallery {
-            /* 2 columns on mobile for a better fit */
+            /* Mobile: 2 columns for better visibility */
             grid-template-columns: repeat(2, 1fr);
           }
-          /* Ensure only 6 images show on a smaller mobile screen for better scrolling */
+          /* Optional: Hide last two images to shorten card on mobile */
           .image-container:nth-child(n + 7) { 
               display: none;
           }
         }
-
+        
         /* Tablet Adjustments (optional, for 3 columns) */
         @media (min-width: 480px) and (max-width: 767px) {
              .image-gallery {

@@ -11,16 +11,18 @@ import Quote from "../app/components/Quote";
 import Faq from "../app/components/Faq";
 import { SERVICES } from "../app/lib/services";
 
+// ⭐️ MANUAL IMAGE IMPORTS ⭐️
+// NOTE: Adjust the path below (e.g., '../assets/images/') based on where you moved your files
 // Define the array of 8 images (1.png to 8.png)
 const serviceImages = [
-  { src: '/1.png`', alt: 'Electrical work photo 1' },
-  { src: '/2.png', alt: 'Electrical work photo 2' },
-  { src: '/3.png', alt: 'Electrical work photo 3' },
-  { src: '/4.png', alt: 'Electrical work photo 4' },
-  { src: '/5.png', alt: 'Electrical work photo 5' },
-  { src: '/6.png', alt: 'Electrical work photo 6' },
-  { src: '/7.png', alt: 'Electrical work photo 7' },
-  { src: '/8.png', alt: 'Electrical work photo 8' },
+  { src: '/1.PNG', alt: 'Electrical work photo 1' }, 
+  { src: '/2.PNG', alt: 'Electrical work photo 2' },
+  { src: '/3.PNG', alt: 'Electrical work photo 3' },
+  { src: '/4.PNG', alt: 'Electrical work photo 4' },
+  { src: '/5.PNG', alt: 'Electrical work photo 5' },
+  { src: '/6.JPEG', alt: 'Electrical work photo 6' },
+  { src: '/7.PNG', alt: 'Electrical work photo 7' },
+  { src: '/8.PNG', alt: 'Electrical work photo 8' },
 ];
 
 export default function Page() {
