@@ -25,6 +25,8 @@ const serviceImages = [
   { src: '/8.PNG', alt: 'Electrical work photo 8' },
 ];
 
+//just saying hi
+
 export default function Page() {
   // theme toggle lives here and is passed to TopBar
   const [theme, setTheme] = useState<"dark" | "light">("dark");
