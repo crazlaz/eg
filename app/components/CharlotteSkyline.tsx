@@ -60,7 +60,7 @@ export default function CharlotteSkyline({ className }: { className?: string }) 
         letterSpacing="-1.5"
         filter="url(#textShadow)"
         style={{
-          fontFamily: 'system-ui, -apple-system, sans-serif'
+          fontFamily: "system-ui, -apple-system, sans-serif"
         }}
       >
         Illuminating the Carolina&apos;s

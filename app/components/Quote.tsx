@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function Quote({
   children,
@@ -48,7 +48,7 @@ export default function Quote({
         }
 
         .quote-card::before {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
           left: 0;

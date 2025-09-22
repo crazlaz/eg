@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // Define a type for the image array
 type ImageProps = {
@@ -44,9 +44,9 @@ export default function Card({
                 onError={(e) => {
                   // Fallback if image fails to load
                   console.log(`Failed to load image: ${img.src}`);
-                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.style.display = "none";
                   if (e.currentTarget.nextElementSibling) {
-                    (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
+                    (e.currentTarget.nextElementSibling as HTMLElement).style.display = "flex";
                   }
                 }}
               />

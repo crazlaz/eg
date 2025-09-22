@@ -71,7 +71,7 @@ export default function Hero() {
 
             <p className="mt-3" style={{ color: "var(--muted)", fontSize: "1.1rem" }}>
               Up-front pricing. Clean, professional work. From panel upgrades to EV chargers —
-              we'll get it done right the first time.
+              we"ll get it done right the first time.
             </p>
 
             <div className="mt-5" style={{ display: "flex", gap: ".75rem", flexWrap: "wrap" }}>
@@ -118,7 +118,7 @@ export default function Hero() {
             >
               <h2 style={{ fontSize: "1.15rem", fontWeight: 700 }}>Request Service</h2>
               <p style={{ color: "var(--muted)", fontSize: ".95rem", marginTop: "-.25rem" }}>
-                Tell us what you need — we'll respond quickly.
+                Tell us what you need — we"ll respond quickly.
               </p>
 
               <QuoteForm />

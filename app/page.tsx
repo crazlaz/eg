@@ -14,14 +14,14 @@ import { SERVICES } from "../app/lib/services";
 // ⭐️ MANUAL IMAGE IMPORTS ⭐️
 // Using uppercase extensions to match your actual files
 const serviceImages = [
-  { src: '/1.PNG', alt: 'Electrical work photo 1' }, 
-  { src: '/2.PNG', alt: 'Electrical work photo 2' },
-  { src: '/3.PNG', alt: 'Electrical work photo 3' },
-  { src: '/4.PNG', alt: 'Electrical work photo 4' },
-  { src: '/5.PNG', alt: 'Electrical work photo 5' },
-  { src: '/6.JPEG', alt: 'Electrical work photo 6' },
-  { src: '/7.PNG', alt: 'Electrical work photo 7' },
-  { src: '/8.PNG', alt: 'Electrical work photo 8' },
+  { src: "/1.PNG", alt: "Electrical work photo 1" }, 
+  { src: "/2.PNG", alt: "Electrical work photo 2" },
+  { src: "/3.PNG", alt: "Electrical work photo 3" },
+  { src: "/4.PNG", alt: "Electrical work photo 4" },
+  { src: "/5.PNG", alt: "Electrical work photo 5" },
+  { src: "/6.JPEG", alt: "Electrical work photo 6" },
+  { src: "/7.PNG", alt: "Electrical work photo 7" },
+  { src: "/8.PNG", alt: "Electrical work photo 8" },
 ];
 
 // Function to get specific images for each service
@@ -82,7 +82,7 @@ export default function Page() {
                 Professional diagnosis and repair for {service.toLowerCase()} with up-front pricing.
                 We handle all aspects of {service.toLowerCase()} to ensure your home is safe and compliant.
               </p>
-              <a href={BRAND.phoneHref} className="btn btn-accent" style={{ marginTop: '1rem', display: 'inline-block' }}>
+              <a href={BRAND.phoneHref} className="btn btn-accent" style={{ marginTop: "1rem", display: "inline-block" }}>
                 Call for {service} Quote
               </a>
             </Card>
