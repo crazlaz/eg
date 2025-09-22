@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Section from "../components/Section";
 import { SERVICES } from "../lib/services";
 import { BRAND } from "../lib/brand";
 import { formatPhone } from "../lib/phone";

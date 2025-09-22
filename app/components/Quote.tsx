@@ -20,7 +20,7 @@ export default function Quote({
       </div>
 
       <blockquote className="quote-text">
-        "{children}"
+        &ldquo;{children}&rdquo;
       </blockquote>
 
       <div className="attribution">
