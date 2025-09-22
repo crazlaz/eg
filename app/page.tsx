@@ -10,9 +10,9 @@ import Card from "../app/components/Card";
 import Quote from "../app/components/Quote";
 import Faq from "../app/components/Faq";
 import { SERVICES } from "../app/lib/services";
+import Image from 'next/image';
 
 // ⭐️ MANUAL IMAGE IMPORTS ⭐️
-// Using uppercase extensions to match your actual files
 const serviceImages = [
   { src: "/1.PNG", alt: "Electrical work photo 1" }, 
   { src: "/2.PNG", alt: "Electrical work photo 2" },
@@ -26,31 +26,37 @@ const serviceImages = [
 
 // Function to get specific images for each service
 function getServiceImages(serviceIndex: number) {
-  // Distribute images across services, with fallback to first image
   const imagesPerService = Math.floor(serviceImages.length / SERVICES.length);
   const startIndex = serviceIndex * imagesPerService;
   const endIndex = startIndex + imagesPerService;
-  
+
   const assignedImages = serviceImages.slice(startIndex, endIndex);
-  
-  // If no images assigned (for last services), use remaining images
+
+  // Fallback to first image for last service if no images are assigned
   if (assignedImages.length === 0 && serviceIndex === SERVICES.length - 1) {
     return serviceImages.slice(SERVICES.length - 1);
   }
-  
+
   return assignedImages.length > 0 ? assignedImages : [serviceImages[0]];
 }
 
+// Helper to generate service description
+function generateServiceDescription(service: string) {
+  return `Professional diagnosis and repair for ${service.toLowerCase()} with up-front pricing.
+  We handle all aspects of ${service.toLowerCase()} to ensure your home is safe and compliant.`;
+}
+
 export default function Page() {
-  // theme toggle lives here and is passed to TopBar
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+
   useEffect(() => {
-    const saved = (localStorage.getItem("eg-theme") as "dark" | "light" | null) ?? null;
+    const savedTheme = (localStorage.getItem("eg-theme") as "dark" | "light" | null) ?? null;
     const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
-    const initial = saved || (prefersDark ? "dark" : "light");
-    setTheme(initial);
-    document.documentElement.setAttribute("data-theme", initial);
+    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+    setTheme(initialTheme);
+    document.documentElement.setAttribute("data-theme", initialTheme);
   }, []);
+
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("eg-theme", theme);
@@ -60,6 +66,7 @@ export default function Page() {
 
   return (
     <main>
+      {/* Top bar with theme toggle */}
       <TopBar theme={theme} setTheme={setTheme} />
       <Hero />
 
@@ -73,14 +80,9 @@ export default function Page() {
           title={service}
         >
           <div className="grid" style={{ gap: "1rem", gridTemplateColumns: "1fr" }}>
-            <Card 
-              key={service} 
-              title={service}
-              images={getServiceImages(index)}
-            >
+            <Card key={service} title={service} images={getServiceImages(index)}>
               <p style={{ color: "var(--muted)", fontSize: ".95rem" }}>
-                Professional diagnosis and repair for {service.toLowerCase()} with up-front pricing.
-                We handle all aspects of {service.toLowerCase()} to ensure your home is safe and compliant.
+                {generateServiceDescription(service)}
               </p>
               <a href={BRAND.phoneHref} className="btn btn-accent" style={{ marginTop: "1rem", display: "inline-block" }}>
                 Call for {service} Quote
@@ -89,7 +91,7 @@ export default function Page() {
           </div>
         </Section>
       ))}
-      
+
       {/* WHY US */}
       <Section title="Why Homeowners Choose EG ELECTRIC">
         <div className="grid" style={{ gap: "1rem", gridTemplateColumns: "repeat(3, minmax(0,1fr))" }}>
@@ -125,7 +127,7 @@ export default function Page() {
         <div className="grid" style={{ gap: "1rem", gridTemplateColumns: "repeat(2, minmax(0,1fr))" }}>
           <Card title="Service Areas" icon="📍">
             <ul className="grid" style={{ marginTop: ".25rem", gap: ".25rem", gridTemplateColumns: "repeat(2, minmax(0,1fr))", color: "var(--muted)", fontSize: ".95rem" }}>
-              {["Charlotte","Huntersville","Concord","Matthews","Gastonia","Cornelius","Harrisburg","Mint Hill"].map(c => <li key={c}>• {c}</li>)}
+              {["Charlotte", "Huntersville", "Concord", "Matthews", "Gastonia", "Cornelius", "Harrisburg", "Mint Hill"].map(c => <li key={c}>• {c}</li>)}
             </ul>
           </Card>
           <div className="card" style={{ padding: "1rem" }}>
