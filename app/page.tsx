@@ -221,7 +221,7 @@ export default function Page() {
         </div>
       </div>
 
-      {/* Owner Names Section */}
+      {/* Owner Nmes Section */}
       <div style={{ fontSize: ".85rem", color: "var(--muted)", textAlign: "center", marginTop: "1.5rem" }}>
         <div>Owners: Edgar Garcia & Diego Ramirez</div>
       </div>
