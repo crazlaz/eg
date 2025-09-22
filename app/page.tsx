@@ -26,6 +26,7 @@ const serviceImages = [
 ];
 
 //just saying hi
+//hi
 
 export default function Page() {
   // theme toggle lives here and is passed to TopBar
