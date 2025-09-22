@@ -24,18 +24,12 @@ function HeroBG() {
   return (
     <div aria-hidden={true} className="hero-bg">
       <img
-        src="/ctl.jpeg" /* ensure this file exists in /public */
+        src="/ctl.jpg" /* ensure this file exists in /public */
         alt=""
         className="hero-bg-img"
         loading="eager"
         decoding="async"
       />
-      <div className="hero-bg-gradients" />
-      <div className="hero-bg-vignette" />
-      {/* Overlay Text */}
-      <div className="hero-overlay-text">
-        Illuminating the Carolina's
-      </div>
     </div>
   );
 }
@@ -124,7 +118,7 @@ export default function Hero() {
             >
               <h2 style={{ fontSize: "1.15rem", fontWeight: 700 }}>Request Service</h2>
               <p style={{ color: "var(--muted)", fontSize: ".95rem", marginTop: "-.25rem" }}>
-                Tell us what you need — we&apos;ll respond quickly.
+                Tell us what you need — we'll respond quickly.
               </p>
 
               <QuoteForm />
