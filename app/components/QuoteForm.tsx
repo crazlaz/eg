@@ -120,7 +120,7 @@ export default function QuoteForm() {
       </div>
 
       {/* Display success or error message */}
-      {status === "ok" && <Banner tone="success">Thanks! We'll reach out shortly.</Banner>}
+      {status === "ok" && <Banner tone="success">Thanks! We will reach out shortly.</Banner>}
       {status === "err" && <Banner tone="error">Please check your info and try again, or call {phonePretty}.</Banner>}
 
       <form onSubmit={onSubmit} style={{ marginTop: "1rem", display: "grid", gap: ".75rem", width: "100%" }}>
