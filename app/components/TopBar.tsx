@@ -140,7 +140,7 @@ export default function TopBar({
         {/* Mobile menu — fixed sheet under header on mobile */}
         <div
           id="mobile-menu"
-          className={`mobile-menu show-on-mobile ${mobileOpen ? "open" : ""}`}
+          className={`mobile-menu show-on-mobile ${mobileOpen ? "open" : ""} `}
           style={
             mobileOpen
               ? { position: "fixed", top: headerH, left: 0, right: 0, zIndex: 55 }
@@ -151,9 +151,7 @@ export default function TopBar({
           <a href="#quote">Quote</a>
           <a href="#faq">FAQ</a>
           <a href="#footer">Contact</a>
-          <a href={BRAND.phoneHref} className="btn btn-accent block">
-            Call {formatPhone(BRAND.phone)}
-          </a>
+
         </div>
 
         <style jsx>{`

@@ -24,14 +24,12 @@ function HeroBG() {
   return (
     <div aria-hidden={true} className="hero-bg">
       <img
-        src="/ctl.jpeg" /* ensure this file exists in /public */
+        src="/ctl.jpg" /* ensure this file exists in /public */
         alt=""
         className="hero-bg-img"
         loading="eager"
         decoding="async"
       />
-      <div className="hero-bg-gradients" />
-      <div className="hero-bg-vignette" />
     </div>
   );
 }
@@ -73,7 +71,7 @@ export default function Hero() {
 
             <p className="mt-3" style={{ color: "var(--muted)", fontSize: "1.1rem" }}>
               Up-front pricing. Clean, professional work. From panel upgrades to EV chargers —
-              we’ll get it done right the first time.
+              we'll get it done right the first time.
             </p>
 
             <div className="mt-5" style={{ display: "flex", gap: ".75rem", flexWrap: "wrap" }}>
@@ -120,7 +118,7 @@ export default function Hero() {
             >
               <h2 style={{ fontSize: "1.15rem", fontWeight: 700 }}>Request Service</h2>
               <p style={{ color: "var(--muted)", fontSize: ".95rem", marginTop: "-.25rem" }}>
-                Tell us what you need — we’ll respond quickly.
+                Tell us what you need — we'll respond quickly.
               </p>
 
               <QuoteForm />
@@ -166,9 +164,11 @@ export default function Hero() {
         .hero-bg-img {
           position: absolute; inset: 0;
           width: 100%; height: 100%;
-          object-fit: cover; object-position: center 55%;
+          object-fit: cover; 
+          object-position: center center;
           transform: scale(1.02);
           will-change: transform;
+          z-index: 1;
         }
         .hero-bg-gradients {
           position: absolute; inset: 0;
@@ -181,11 +181,33 @@ export default function Hero() {
               rgba(0,0,0,0.72) 100%);
           mix-blend-mode: multiply;
           pointer-events: none;
+          z-index: 2;
         }
         .hero-bg-vignette {
           position: absolute; inset: -10%;
           background: radial-gradient(120% 70% at 50% 10%, transparent 0%, transparent 50%, rgba(0,0,0,.65) 100%);
           pointer-events: none;
+          z-index: 3;
+        }
+
+        /* OVERLAY TEXT */
+        .hero-overlay-text {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: white;
+          font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+          font-weight: 800;
+          text-align: center;
+          letter-spacing: -0.02em;
+          text-shadow: 
+            2px 2px 4px rgba(0,0,0,0.8),
+            0px 0px 20px rgba(0,0,0,0.6);
+          pointer-events: none;
+          z-index: 10;
+          white-space: nowrap;
+          opacity: 1;
         }
 
         /* top trust strip */
@@ -214,7 +236,19 @@ export default function Hero() {
 
         @media (max-width: 767px) {
           .hero-section { min-height: auto; }
-          .hero-bg-img { object-position: center 60%; }
+          .hero-bg-img { object-position: center center; }
+          .hero-overlay-text {
+            font-size: clamp(1.8rem, 8vw, 3rem);
+            white-space: normal;
+            line-height: 1.1;
+            padding: 0 1rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-overlay-text {
+            font-size: clamp(1.5rem, 7vw, 2.5rem);
+          }
         }
       `}</style>
     </section>

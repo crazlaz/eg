@@ -12,8 +12,7 @@ import Faq from "../app/components/Faq";
 import { SERVICES } from "../app/lib/services";
 
 // ⭐️ MANUAL IMAGE IMPORTS ⭐️
-// NOTE: Adjust the path below (e.g., '../assets/images/') based on where you moved your files
-// Define the array of 8 images (1.png to 8.png)
+// Using uppercase extensions to match your actual files
 const serviceImages = [
   { src: '/1.PNG', alt: 'Electrical work photo 1' }, 
   { src: '/2.PNG', alt: 'Electrical work photo 2' },
@@ -25,8 +24,22 @@ const serviceImages = [
   { src: '/8.PNG', alt: 'Electrical work photo 8' },
 ];
 
-//just saying hi
-//hi
+// Function to get specific images for each service
+function getServiceImages(serviceIndex: number) {
+  // Distribute images across services, with fallback to first image
+  const imagesPerService = Math.floor(serviceImages.length / SERVICES.length);
+  const startIndex = serviceIndex * imagesPerService;
+  const endIndex = startIndex + imagesPerService;
+  
+  const assignedImages = serviceImages.slice(startIndex, endIndex);
+  
+  // If no images assigned (for last services), use remaining images
+  if (assignedImages.length === 0 && serviceIndex === SERVICES.length - 1) {
+    return serviceImages.slice(SERVICES.length - 1);
+  }
+  
+  return assignedImages.length > 0 ? assignedImages : [serviceImages[0]];
+}
 
 export default function Page() {
   // theme toggle lives here and is passed to TopBar
@@ -52,42 +65,32 @@ export default function Page() {
 
       <div className="divider" />
 
-      {/* SERVICES - Now iterating to create a Section for EACH service */}
+      {/* SERVICES - Now with proper image distribution */}
       {SERVICES.map((service, index) => (
         <Section 
           key={service} 
-          id={service.toLowerCase().replace(/\s/g, "-").replace(/&/g, "and")} // Create a clean ID for navigation
+          id={service.toLowerCase().replace(/\s/g, "-").replace(/&/g, "and")}
           title={service}
         >
-          {/* Card can be used here to display details and photos for the specific service */}
-          <div className="grid" style={{ gap: "1rem", gridTemplateColumns: "repeat(2, minmax(0,1fr))" }}>
+          <div className="grid" style={{ gap: "1rem", gridTemplateColumns: "1fr" }}>
             <Card 
               key={service} 
               title={service}
-              // Pass the images to the card in the first service section for demonstration
-              images={index === 0 ? serviceImages : []} 
+              images={getServiceImages(index)}
             >
               <p style={{ color: "var(--muted)", fontSize: ".95rem" }}>
                 Professional diagnosis and repair for {service.toLowerCase()} with up-front pricing.
                 We handle all aspects of {service.toLowerCase()} to ensure your home is safe and compliant.
               </p>
-              {/* Optional: Add a second card for a call-to-action */}
               <a href={BRAND.phoneHref} className="btn btn-accent" style={{ marginTop: '1rem', display: 'inline-block' }}>
                 Call for {service} Quote
               </a>
             </Card>
-
-            {/* Placeholder for another content block, like an image or map, next to the card */}
-            <div className="card" style={{ padding: "1rem" }}>
-                <div className="grid place-items-center" style={{ width: "100%", aspectRatio: "16/10", borderRadius: "0.75rem", border: "1px solid var(--card-br)", background: "var(--bgElev)", color: "var(--muted)" }}>
-                    {service} Image/Diagram
-                </div>
-            </div>
           </div>
         </Section>
       ))}
       
-      {/* WHY US - Now separated from the service sections */}
+      {/* WHY US */}
       <Section title="Why Homeowners Choose EG ELECTRIC">
         <div className="grid" style={{ gap: "1rem", gridTemplateColumns: "repeat(3, minmax(0,1fr))" }}>
           <Card title="Fast Scheduling" icon="⏱">

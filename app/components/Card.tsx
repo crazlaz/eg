@@ -1,7 +1,6 @@
 import React from 'react';
-import Image from 'next/image';
 
-// Define a type for the image array, assuming strings are URLs
+// Define a type for the image array
 type ImageProps = {
   src: string;
   alt: string;
@@ -27,23 +26,48 @@ export default function Card({
         </div>
         <div style={{ marginTop: ".5rem" }}>{children}</div>
       </div>
-
-      {/* New Image Gallery Section */}
+      
+      {/* Image Gallery Section - Using regular img tags */}
       {images.length > 0 && (
         <div className="image-gallery">
           {images.slice(0, 8).map((img, index) => (
             <div key={index} className="image-container">
-              <Image
+              <img
                 src={img.src}
                 alt={img.alt || `Card image ${index + 1}`}
-                fill={true} // 🌟 FIX: Use 'fill' prop instead of deprecated 'layout="fill"'
-                sizes="(max-width: 767px) 50vw, 25vw" // Required for 'fill' and good for responsive loading
                 style={{
-                    objectFit: "cover", // Crops to fill the container
-                // Ensures the image respects the parent container
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
                 }}
-                quality={75}
+                onError={(e) => {
+                  // Fallback if image fails to load
+                  console.log(`Failed to load image: ${img.src}`);
+                  e.currentTarget.style.display = 'none';
+                  if (e.currentTarget.nextElementSibling) {
+                    (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
+                  }
+                }}
               />
+              <div 
+                className="image-fallback"
+                style={{ 
+                  display: "none",
+                  width: "100%", 
+                  height: "100%", 
+                  backgroundColor: "var(--bgElev)",
+                  border: "1px solid var(--border)",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--muted)",
+                  fontSize: "0.8rem",
+                  textAlign: "center",
+                  padding: "0.5rem"
+                }}
+              >
+                Image {index + 1}
+              </div>
             </div>
           ))}
         </div>
@@ -57,39 +81,57 @@ export default function Card({
           overflow: hidden;
           background: var(--bgElev);
         }
-
+        
         .image-gallery {
           display: grid;
-          /* Desktop: 4 columns */
-          grid-template-columns: repeat(4, 1fr); 
-          gap: 0px; 
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0px;
           border-top: 1px solid var(--border);
         }
-
+        
         .image-container {
-          position: relative; /* 💡 CRITICAL: Still required for 'fill' to work */
-          /* Creates a perfect square container */
-          padding-bottom: 100%; 
+          position: relative;
+          padding-bottom: 100%; /* Creates a perfect square */
           overflow: hidden;
-        }
-
-        /* --- Mobile Adjustments (under 768px) --- */
-        @media (max-width: 767px) {
-          .image-gallery {
-            /* Mobile: 2 columns for better visibility */
-            grid-template-columns: repeat(2, 1fr);
-          }
-          /* Optional: Hide last two images to shorten card on mobile */
-          .image-container:nth-child(n + 7) { 
-              display: none;
-          }
+          background: var(--bgElev);
         }
         
-        /* Tablet Adjustments (optional, for 3 columns) */
+        .image-container img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        
+        .image-fallback {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 767px) {
+          .image-gallery {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          
+          /* Hide last images on mobile for cleaner look */
+          .image-container:nth-child(n + 5) {
+            display: none;
+          }
+        }
+
+        /* Tablet Adjustments */
         @media (min-width: 480px) and (max-width: 767px) {
-             .image-gallery {
-                grid-template-columns: repeat(3, 1fr);
-             }
+          .image-gallery {
+            grid-template-columns: repeat(3, 1fr);
+          }
+          
+          .image-container:nth-child(n + 7) {
+            display: none;
+          }
         }
       `}</style>
     </div>
