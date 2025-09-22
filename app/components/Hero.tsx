@@ -68,11 +68,11 @@ export default function Hero() {
               Trusted, Same-Day Electricians in{" "}
               <span className="accent-text">{BRAND.city}</span>
             </h1>
+<p className="mt-3" style={{ color: "var(--muted)", fontSize: "1.1rem" }}>
+  Up-front pricing. Clean, professional work. From panel upgrades to EV chargers —
+  we'll get it done right the first time.
+</p>
 
-            <p className="mt-3" style={{ color: "var(--muted)", fontSize: "1.1rem" }}>
-              Up-front pricing. Clean, professional work. From panel upgrades to EV chargers —
-              we"ll get it done right the first time.
-            </p>
 
             <div className="mt-5" style={{ display: "flex", gap: ".75rem", flexWrap: "wrap" }}>
               <a href={BRAND.phoneHref} className="btn btn-accent">☎ Call {BRAND.phonePretty}</a>

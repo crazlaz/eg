@@ -10,7 +10,6 @@ import Card from "../app/components/Card";
 import Quote from "../app/components/Quote";
 import Faq from "../app/components/Faq";
 import { SERVICES } from "../app/lib/services";
-import Image from 'next/image';
 
 // ⭐️ MANUAL IMAGE IMPORTS ⭐️
 const serviceImages = [
