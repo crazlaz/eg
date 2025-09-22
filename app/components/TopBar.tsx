@@ -72,13 +72,13 @@ export default function TopBar({
             gap: "1rem",
           }}
         >
-          <a href="#top" className="brand">
+          <a href="#top" className="brand pt-7" aria-label={BRAND.name}>
             {/* Replace BRAND.name with the Image component */}
             <Image
               src="/company.png" // Path to your logo in the public folder
               alt={BRAND.name} // Alt text for accessibility
               width={100} // Adjust width as needed
-              height={32} // Adjust height as needed
+              height={42} // Adjust height as needed
               style={{ objectFit: "contain" }} // Ensures the image fits within the given dimensions
             />
           </a>

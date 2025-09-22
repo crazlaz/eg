@@ -10,6 +10,9 @@ import Card from "../app/components/Card";
 import Quote from "../app/components/Quote";
 import Faq from "../app/components/Faq";
 import { SERVICES } from "../app/lib/services";
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Icon } from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 // ⭐️ MANUAL IMAGE IMPORTS ⭐️
 const serviceImages = [
@@ -120,22 +123,60 @@ export default function Page() {
           </Quote>
         </div>
       </Section>
+{/* SERVICE AREA */}
+<Section title="Proudly Serving Greater Charlotte">
+  <div className="grid" style={{ gap: "1rem", gridTemplateColumns: "repeat(2, minmax(0,1fr))" }}>
+    <Card title="Service Areas" icon="📍">
+<ul
+  className="service-areas-list"
+  style={{
+    marginTop: ".25rem",
+    gap: ".25rem",
+    color: "var(--muted)",
+    fontSize: ".95rem",
+    paddingLeft: "1rem", // Optional: to add some indentation
+  }}
+>
+  {["Charlotte", "Concord", "Matthews", "Gastonia", "Cornelius", "Harrisburg", "Mint Hill"].map(c => (
+    <li key={c}>• {c}</li>
+  ))}
+</ul>
 
-      {/* SERVICE AREA */}
-      <Section title="Proudly Serving Greater Charlotte">
-        <div className="grid" style={{ gap: "1rem", gridTemplateColumns: "repeat(2, minmax(0,1fr))" }}>
-          <Card title="Service Areas" icon="📍">
-            <ul className="grid" style={{ marginTop: ".25rem", gap: ".25rem", gridTemplateColumns: "repeat(2, minmax(0,1fr))", color: "var(--muted)", fontSize: ".95rem" }}>
-              {["Charlotte", "Huntersville", "Concord", "Matthews", "Gastonia", "Cornelius", "Harrisburg", "Mint Hill"].map(c => <li key={c}>• {c}</li>)}
-            </ul>
-          </Card>
-          <div className="card" style={{ padding: "1rem" }}>
-            <div className="grid place-items-center" style={{ width: "100%", aspectRatio: "16/10", borderRadius: "0.75rem", border: "1px solid var(--card-br)", background: "linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.02))", color: "var(--muted)" }}>
-              Service Area Map
-            </div>
-          </div>
-        </div>
-      </Section>
+
+    </Card>
+    <div className="card" style={{ padding: "1rem", display: "flex", flexDirection: "column" }}>
+      <div
+        className="grid place-items-center"
+        style={{
+          width: "100%",
+          height: "300px", // Set a fixed height to avoid it shrinking
+          borderRadius: "0.75rem",
+          border: "1px solid var(--card-br)",
+          background: "linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.02))",
+          color: "var(--muted)",
+        }}
+      >
+        {/* React-Leaflet Map */}
+        <MapContainer
+          center={[35.2271, -80.8431]} // Charlotte coordinates
+          zoom={12}
+          style={{
+            width: "100%",
+            height: "100%",
+            borderRadius: "0.75rem",
+          }}
+        >
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <Marker position={[35.2271, -80.8431]}>
+            <Popup>Charlotte, NC</Popup>
+          </Marker>
+        </MapContainer>
+      </div>
+    </div>
+  </div>
+</Section>
+
+
 
       {/* FAQ */}
       <Section id="faq" title="FAQ">
@@ -159,17 +200,31 @@ export default function Page() {
       <footer id="footer" style={{ borderTop: "1px solid var(--card-br)" }}>
         <div className="container" style={{ padding: "2rem 0" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
-              <div>
-                <div style={{ fontSize: "1.1rem", fontWeight: 700 }}>{BRAND.name}</div>
-                <div style={{ fontSize: ".9rem", color: "var(--muted)" }}>{BRAND.city}</div>
-                <div style={{ fontSize: ".9rem", color: "var(--muted)" }}>{BRAND.license}</div>
-              </div>
-              <div style={{ display: "flex", gap: ".75rem", flexWrap: "wrap" }}>
-                <a href={BRAND.phoneHref} className="btn btn-accent">Call {phonePretty}</a>
-                <a href={BRAND.emailHref} className="btn btn-outline">Email Us</a>
-              </div>
-            </div>
+     {/* Company Info Section */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+          <div>
+            <div style={{ fontSize: "1.4rem", fontWeight: 700 }}>{BRAND.name}</div>
+            <div style={{ fontSize: ".9rem", color: "var(--muted)" }}>{BRAND.city}</div>
+            <div style={{ fontSize: ".9rem", color: "var(--muted)" }}>{BRAND.license}</div>
+          </div>
+
+          {/* Contact Links with Icons */}
+          <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", justifyContent: "center" }}>
+            <a href={BRAND.phoneHref} className="btn btn-accent" style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>
+              <i className="fas fa-phone-alt"></i> Call {phonePretty}
+            </a>
+            <a href={BRAND.emailHref} className="btn btn-outline" style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>
+              <i className="fas fa-envelope"></i> Email Us
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Owner Names Section */}
+      <div style={{ fontSize: ".85rem", color: "var(--muted)", textAlign: "center", marginTop: "1.5rem" }}>
+        <div>Owners: Edgar Garcia & Diego Ramirez</div>
+      </div>
             <div style={{ fontSize: ".75rem", color: "var(--muted)" }}>
               © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
             </div>
