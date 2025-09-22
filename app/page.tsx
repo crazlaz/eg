@@ -10,8 +10,6 @@ import Card from "../app/components/Card";
 import Quote from "../app/components/Quote";
 import Faq from "../app/components/Faq";
 import { SERVICES } from "../app/lib/services";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 // ⭐️ MANUAL IMAGE IMPORTS ⭐️
@@ -123,59 +121,22 @@ export default function Page() {
           </Quote>
         </div>
       </Section>
-{/* SERVICE AREA */}
-<Section title="Proudly Serving Greater Charlotte">
-  <div className="grid" style={{ gap: "1rem", gridTemplateColumns: "repeat(2, minmax(0,1fr))" }}>
-    <Card title="Service Areas" icon="📍">
-<ul
-  className="grid"
-  style={{
-    marginTop: ".25rem",
-    gap: ".25rem",
-    gridTemplateColumns: "repeat(2, minmax(0, 1fr))", // Default 2 columns
-    color: "var(--muted)",
-    fontSize: ".95rem",
-  }}
->
-  {["Charlotte", "Concord", "Matthews", "Gastonia", "Cornelius", "Harrisburg", "Mint Hill"].map(c => (
-    <li key={c}>• {c}</li>
-  ))}
-</ul>
 
-    </Card>
-    <div className="card" style={{ padding: "1rem", display: "flex", flexDirection: "column" }}>
-      <div
-        className="grid place-items-center"
-        style={{
-          width: "100%",
-          height: "300px", // Set a fixed height to avoid it shrinking
-          borderRadius: "0.75rem",
-          border: "1px solid var(--card-br)",
-          background: "linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.02))",
-          color: "var(--muted)",
-        }}
-      >
-        {/* React-Leaflet Map */}
-        <MapContainer
-          center={[35.2271, -80.8431]} // Charlotte coordinates
-          zoom={12}
-          style={{
-            width: "100%",
-            height: "100%",
-            borderRadius: "0.75rem",
-          }}
-        >
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <Marker position={[35.2271, -80.8431]}>
-            <Popup>Charlotte, NC</Popup>
-          </Marker>
-        </MapContainer>
-      </div>
-    </div>
-  </div>
-</Section>
-
-
+      {/* SERVICE AREA */}
+      <Section title="Proudly Serving Greater Charlotte">
+        <div className="grid" style={{ gap: "1rem", gridTemplateColumns: "repeat(2, minmax(0,1fr))" }}>
+          <Card title="Service Areas" icon="📍">
+            <ul className="grid" style={{ marginTop: ".25rem", gap: ".25rem", gridTemplateColumns: "repeat(2, minmax(0,1fr))", color: "var(--muted)", fontSize: ".95rem" }}>
+              {["Charlotte", "Huntersville", "Concord", "Matthews", "Gastonia", "Cornelius", "Harrisburg", "Mint Hill"].map(c => <li key={c}>• {c}</li>)}
+            </ul>
+          </Card>
+          <div className="card" style={{ padding: "1rem" }}>
+            <div className="grid place-items-center" style={{ width: "100%", aspectRatio: "16/10", borderRadius: "0.75rem", border: "1px solid var(--card-br)", background: "linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.02))", color: "var(--muted)" }}>
+              Service Area Map
+            </div>
+          </div>
+        </div>
+      </Section>
 
       {/* FAQ */}
       <Section id="faq" title="FAQ">
