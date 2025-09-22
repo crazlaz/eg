@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image"; // Import Image from next/image
 
 // Type for Image Props (each image in the gallery)
 type ImageProps = {
@@ -29,13 +30,13 @@ const Card: React.FC<CardProps> = ({ title, children, icon, images = [] }) => {
         <div className="image-gallery">
           {images.slice(0, 8).map((img, index) => (
             <div key={index} className="image-container">
-              <img
+              <Image
                 src={img.src}
                 alt={img.alt || `Card image ${index + 1}`}
+                layout="fill"
+                objectFit="cover"
                 className="gallery-image"
                 onError={(e) => {
-                  // Hide image and show fallback text if image fails to load
-                  e.currentTarget.style.display = "none";
                   const fallback = e.currentTarget.nextElementSibling;
                   if (fallback) {
                     (fallback as HTMLElement).style.display = "flex";
