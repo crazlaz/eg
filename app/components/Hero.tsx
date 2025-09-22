@@ -2,7 +2,6 @@
 
 import QuoteForm from "../components/QuoteForm";
 import { BRAND } from "../lib/brand";
-import Image from "next/image"; // Import Image from next/image
 
 /* tiny helper */
 function Dot() {
@@ -24,15 +23,14 @@ function Dot() {
 function HeroBG() {
   return (
     <div aria-hidden={true} className="hero-bg">
-      <Image
+      <img
         src="/ctl.jpg" /* ensure this file exists in /public */
-        alt="Hero background image"
+        alt=""
         className="hero-bg-img"
-        layout="fill"
-        objectFit="cover"
         loading="eager"
         decoding="async"
       />
+
     </div>
   );
 }
@@ -71,9 +69,10 @@ export default function Hero() {
               Trusted, Same-Day Electricians in{" "}
               <span className="accent-text">{BRAND.city}</span>
             </h1>
+
             <p className="mt-3" style={{ color: "var(--muted)", fontSize: "1.1rem" }}>
               Up-front pricing. Clean, professional work. From panel upgrades to EV chargers —
-              we will get it done right the first time.
+              we always get it done right the first time.
             </p>
 
             <div className="mt-5" style={{ display: "flex", gap: ".75rem", flexWrap: "wrap" }}>
@@ -120,7 +119,7 @@ export default function Hero() {
             >
               <h2 style={{ fontSize: "1.15rem", fontWeight: 700 }}>Request Service</h2>
               <p style={{ color: "var(--muted)", fontSize: ".95rem", marginTop: "-.25rem" }}>
-                Tell us what you need — we&apos;ll respond quickly.
+                Tell us what you need — we will respond quickly.
               </p>
 
               <QuoteForm />
