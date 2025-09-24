@@ -92,20 +92,21 @@ export default function Page() {
         </Section>
       ))}
 
-      {/* WHY US */}
-      <Section title="Why Homeowners Choose EG ELECTRIC">
-        <div className="grid" style={{ gap: "1rem", gridTemplateColumns: "repeat(3, minmax(0,1fr))" }}>
-          <Card title="Fast Scheduling" icon="⏱">
-            Same-day or next-day appointments. We arrive on time, ready to work.
-          </Card>
-          <Card title="Up-Front Pricing" icon="💵">
-            Clear estimates before work begins. No surprises at checkout.
-          </Card>
-          <Card title="Quality You Can Trust" icon="🏅">
-            Licensed, insured, background-checked electricians. Clean, safe work.
-          </Card>
-        </div>
-      </Section>
+{/* WHY US */}
+<Section title="Why Homeowners Choose EG ELECTRIC">
+  <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+    <Card title="Fast Scheduling" icon="⏱">
+      Same-day or next-day appointments. We arrive on time, ready to work.
+    </Card>
+    <Card title="Up-Front Pricing" icon="💵">
+      Clear estimates before work begins. No surprises at checkout.
+    </Card>
+    <Card title="Quality You Can Trust" icon="🏅">
+      Licensed, insured, background-checked electricians. Clean, safe work.
+    </Card>
+  </div>
+</Section>
+
 
       {/* TESTIMONIALS */}
       <Section title="What Customers Say">

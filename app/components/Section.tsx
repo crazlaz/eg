@@ -8,12 +8,12 @@ export default function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} style={{ padding: "2.5rem 0" }}>
-      <div className="container">
-        <h2 style={{ fontSize: "clamp(1.5rem, 1.2vw + 1rem, 2rem)", fontWeight: 700, letterSpacing: "-0.01em" }}>
+    <section id={id} className="py-10 md:py-16">
+      <div className="container mx-auto px-4">
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
           {title}
         </h2>
-        <div style={{ marginTop: "1.25rem" }}>{children}</div>
+        <div className="mt-5">{children}</div>
       </div>
     </section>
   );
