@@ -204,7 +204,7 @@ export default function TopBar({
               : undefined
           }
         >
-          <a href="#services" className="block px-4 py-3">
+          <a href="#service" className="block px-4 py-3">
             Services
           </a>
           <a href="#quote" className="block px-4 py-3">

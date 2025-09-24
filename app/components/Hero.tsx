@@ -2,7 +2,7 @@
 
 import QuoteForm from "../components/QuoteForm";
 import { BRAND } from "../lib/brand";
-
+import Image from "next/image";
 /* tiny helper */
 function Dot() {
   return (
@@ -19,7 +19,7 @@ function Dot() {
   );
 }
 
-/* Full-bleed background image with overlays */
+/* Full-bleed background image */
 function HeroBG() {
   return (
     <div aria-hidden={true} className="hero-bg">
@@ -33,11 +33,47 @@ function HeroBG() {
     </div>
   );
 }
-
-export default function Hero() {
+export default function Hero({
+    theme,
+  setTheme,
+}: {
+  theme: "dark" | "light";
+  setTheme: React.Dispatch<React.SetStateAction<"dark" | "light">>;
+}) {
   return (
     <section id="top" className="hero-section" aria-label="Hero">
+      {/* Background image */}
       <HeroBG />
+
+  {/* Gradient tagline BELOW image */}
+<div className="w-full text-center mt-6 animate-pulse">
+  <h2 className="text-4xl md:text-6xl font-extrabold uppercase bg-gradient-to-l from-red-700 via-red-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-lg tracking-tight">
+    Illuminating the Carolinas
+  </h2>
+  {/* Logo centered below tagline */}
+  <div className="mt-4 flex justify-center">
+    {theme === "dark" ? (
+      <Image
+        src="/company2.png"
+        alt={`${BRAND.name} logo dark`}
+        width={350}
+        height={120}
+        className="h-24 md:h-28 w-auto object-contain"
+      />
+    ) : (
+      <Image
+        src="/company.png"
+        alt={`${BRAND.name} logo light`}
+        width={350}
+        height={120}
+        className="h-24 md:h-28 w-auto object-contain"
+      />
+    )}
+  </div>
+  
+
+</div>
+
 
       {/* top trust strip */}
       <div className="container">
@@ -131,10 +167,7 @@ export default function Hero() {
                 >
                   ☎ Call Now
                 </a>
-                <a
-                  href="#faq"
-                  className="btn btn-outline flex-1 text-center"
-                >
+                <a href="#faq" className="btn btn-outline flex-1 text-center">
                   FAQs
                 </a>
               </div>
@@ -169,20 +202,16 @@ export default function Hero() {
 
         /* BACKGROUND LAYER */
         .hero-bg {
-          position: absolute;
-          inset: 0;
-          z-index: -1;
+          position: relative;
+          width: 100%;
+          height: auto;
         }
         .hero-bg-img {
-          position: absolute;
-          inset: 0;
           width: 100%;
-          height: 100%;
+          height: auto;
           object-fit: cover;
           object-position: center center;
-          transform: scale(1.02);
-          will-change: transform;
-          z-index: 1;
+          display: block;
         }
 
         /* top trust strip */
@@ -202,7 +231,7 @@ export default function Hero() {
           padding: 0.35rem 0.7rem;
         }
 
-        /* hero bullets: 2-up on phones, 3-up on md+ */
+        /* hero bullets */
         .hero-bullets {
           display: grid;
           gap: 0.75rem;
@@ -213,15 +242,6 @@ export default function Hero() {
         @media (min-width: 768px) {
           .hero-bullets {
             grid-template-columns: repeat(3, minmax(0, 1fr));
-          }
-        }
-
-        @media (max-width: 767px) {
-          .hero-section {
-            min-height: auto;
-          }
-          .hero-bg-img {
-            object-position: center center;
           }
         }
       `}</style>

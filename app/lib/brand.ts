@@ -5,7 +5,7 @@ export const BRAND = {
   email: "egelectricllc@outlook.com",
   emailHref: "mailto:egelectricllc@outlook.com",
   city: "Charlotte, NC",
-  license: "License #EL-123456",
+  license: "Licensed & Insured",
 
   get phonePretty() {
     const d = this.phone.replace(/\D/g, "");

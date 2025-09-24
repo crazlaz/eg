@@ -23,7 +23,7 @@ import "swiper/css/pagination";
 // ⭐️ MANUAL IMAGE IMPORTS ⭐️
 const serviceImages = [
   { src: "/1.PNG", alt: "Electrical work photo 1" },
-  { src: "/2.PNG", alt: "Electrical work photo 2" },
+  { src: "https://images.unsplash.com/photo-1704474618942-ae933a8edd86?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fGV2JTIwY2FyJTIwY2hhcmdlcnxlbnwwfHwwfHx8MA%3D%3D", alt: "Electrical work photo 2" },
   { src: "/3.PNG", alt: "Electrical work photo 3" },
   { src: "/4.PNG", alt: "Electrical work photo 4" },
   { src: "/5.PNG", alt: "Electrical work photo 5" },
@@ -45,11 +45,24 @@ function getServiceImages(serviceIndex: number) {
   return assignedImages.length > 0 ? assignedImages : [serviceImages[0]];
 }
 
-// Generate service description
+// Generate service description (unique, marketing-focused)
 function generateServiceDescription(service: string) {
-  return `Professional diagnosis and repair for ${service.toLowerCase()} with up-front pricing.
-  We handle all aspects of ${service.toLowerCase()} to ensure your home is safe and compliant.`;
+  switch (service.toLowerCase()) {
+    case "wiring":
+      return "Our wiring services cover everything from brand-new builds to custom homes, remodels, and repairs. We make sure your system is safe, efficient, and built to last.";
+    case "panels & meters":
+      return "Outdated panels or meters? We provide modern upgrades that handle today’s electrical loads, improve safety, and give you peace of mind for the future.";
+    case "ev chargers":
+      return "Power up at home with professional EV charger installation. Fast, reliable setups designed to fit your vehicle and your lifestyle.";
+    case "generators":
+      return "Never be left in the dark. We install and service backup generators that keep your home running smoothly when the power goes out.";
+    case "solar system installations":
+      return "Take control of your energy costs with solar solutions tailored to your property. Clean, sustainable power that pays for itself over time.";
+    default:
+      return "We deliver safe, reliable electrical solutions tailored to your needs.";
+  }
 }
+
 
 export default function Page() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
@@ -88,7 +101,7 @@ export default function Page() {
     <main>
       {/* Top bar with theme toggle */}
       <TopBar theme={theme} setTheme={setTheme} />
-      <Hero />
+      <Hero theme={theme} setTheme={setTheme} />
       <div className="divider" />
 
 {/* GLOBAL SERVICES CAROUSEL */}
