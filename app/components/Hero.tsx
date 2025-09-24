@@ -64,7 +64,7 @@ export default function Hero({
           />
 
           {/* Tagline */}
-          <h2 className="mt-3 text-3xl md:text-5xl font-extrabold uppercase bg-gradient-to-l from-red-900 via-red-300 to-yellow-200 bg-clip-text text-transparent drop-shadow-lg tracking-tight animate-pulse">
+          <h2 className="mt-3 text-3xl md:text-5xl font-extrabold uppercase bg-gradient-to-l from-red-900 via-orange-900 to-yellow-500 bg-clip-text text-transparent drop-shadow-lg tracking-tight animate-pulse">
             Illuminating the Carolinas
           </h2>
         </div>
