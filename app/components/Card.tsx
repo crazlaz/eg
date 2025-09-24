@@ -1,7 +1,8 @@
-import React from "react";
-import Image from "next/image"; // Import Image from next/image
+"use client";
 
-// Type for Image Props (each image in the gallery)
+import React from "react";
+import Image from "next/image";
+
 type ImageProps = {
   src: string;
   alt: string;
@@ -16,26 +17,29 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, children, icon, images = [] }) => {
   return (
-    <div className="card">
-      <div className="card-header">
-        <div className="card-title">
-          {icon && <span className="card-icon">{icon}</span>}
-          <span className="title-text">{title}</span>
+    <div className="rounded-xl border border-[var(--border)] bg-[var(--bgElev)] shadow-sm overflow-hidden transition hover:shadow-md">
+      {/* Header */}
+      <div className="p-4">
+        <div className="flex items-center gap-2">
+          {icon && <span className="text-xl">{icon}</span>}
+          <h3 className="font-semibold text-[var(--fg)]">{title}</h3>
         </div>
-        <div className="card-body">{children}</div>
+        <div className="mt-2 text-sm text-[var(--muted)]">{children}</div>
       </div>
 
-      {/* Image Gallery Section */}
+      {/* Image Gallery */}
       {images.length > 0 && (
-        <div className="image-gallery">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 border-t border-[var(--border)]">
           {images.slice(0, 8).map((img, index) => (
-            <div key={index} className="image-container">
+            <div
+              key={index}
+              className="relative aspect-square bg-[var(--bg)]"
+            >
               <Image
                 src={img.src}
                 alt={img.alt || `Card image ${index + 1}`}
-                layout="fill"
-                objectFit="cover"
-                className="gallery-image"
+                fill
+                className="object-cover"
                 onError={(e) => {
                   const fallback = e.currentTarget.nextElementSibling;
                   if (fallback) {
@@ -43,108 +47,13 @@ const Card: React.FC<CardProps> = ({ title, children, icon, images = [] }) => {
                   }
                 }}
               />
-              <div className="image-fallback">
+              <div className="hidden absolute inset-0 items-center justify-center text-xs text-[var(--muted)] bg-[var(--bgElev)] border border-[var(--border)]">
                 Image {index + 1}
               </div>
             </div>
           ))}
         </div>
       )}
-
-      {/* CSS Styles */}
-      <style jsx>{`
-        .card {
-          border: 1px solid var(--border);
-          border-radius: 0.5rem;
-          overflow: hidden;
-          background: var(--bgElev);
-        }
-
-        .card-header {
-          padding: 1.1rem;
-        }
-
-        .card-title {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
-
-        .card-icon {
-          font-size: 1.25rem;
-        }
-
-        .title-text {
-          font-weight: 600;
-        }
-
-        .card-body {
-          margin-top: 0.5rem;
-        }
-
-        .image-gallery {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 0;
-          border-top: 1px solid var(--border);
-        }
-
-        .image-container {
-          position: relative;
-          padding-bottom: 100%; /* Creates a square container */
-          overflow: hidden;
-          background: var(--bgElev);
-        }
-
-        .gallery-image {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .image-fallback {
-          display: none;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: var(--bgElev);
-          border: 1px solid var(--border);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: var(--muted);
-          font-size: 0.8rem;
-          text-align: center;
-          padding: 0.5rem;
-        }
-
-        /* Mobile adjustments */
-        @media (max-width: 767px) {
-          .image-gallery {
-            grid-template-columns: repeat(2, 1fr);
-          }
-
-          .image-container:nth-child(n + 5) {
-            display: none; /* Hide extra images */
-          }
-        }
-
-        /* Tablet adjustments */
-        @media (min-width: 480px) and (max-width: 767px) {
-          .image-gallery {
-            grid-template-columns: repeat(3, 1fr);
-          }
-
-          .image-container:nth-child(n + 7) {
-            display: none; /* Hide extra images */
-          }
-        }
-      `}</style>
     </div>
   );
 };

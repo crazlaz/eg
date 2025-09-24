@@ -123,21 +123,40 @@ export default function Page() {
         </div>
       </Section>
 
-      {/* SERVICE AREA */}
-      <Section title="Proudly Serving Greater Charlotte">
-        <div className="grid" style={{ gap: "1rem", gridTemplateColumns: "repeat(2, minmax(0,1fr))" }}>
-          <Card title="Service Areas" icon="📍">
-            <ul className="grid" style={{ marginTop: ".25rem", gap: ".25rem", gridTemplateColumns: "repeat(2, minmax(0,1fr))", color: "var(--muted)", fontSize: ".95rem" }}>
-              {["Charlotte", "Huntersville", "Concord", "Matthews", "Gastonia", "Cornelius", "Harrisburg", "Mint Hill"].map(c => <li key={c}>• {c}</li>)}
-            </ul>
-          </Card>
-          <div className="card" style={{ padding: "1rem" }}>
-            <div className="grid place-items-center" style={{ width: "100%", aspectRatio: "16/10", borderRadius: "0.75rem", border: "1px solid var(--card-br)", background: "linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.02))", color: "var(--muted)" }}>
-              Service Area Map
-            </div>
-          </div>
-        </div>
-      </Section>
+{/* SERVICE AREA */}
+<Section title="Proudly Serving Greater Charlotte">
+  <div className="grid gap-4 md:grid-cols-2">
+    {/* Service Areas Card */}
+    <Card title="Service Areas" icon="📍">
+      <ul className="grid gap-1 mt-1 text-[0.95rem] text-[var(--muted)] grid-cols-1 sm:grid-cols-2">
+        {[
+          "Charlotte",
+          "Huntersville",
+          "Concord",
+          "Matthews",
+          "Gastonia",
+          "Cornelius",
+          "Harrisburg",
+          "Mint Hill",
+        ].map((c) => (
+          <li key={c}>• {c}</li>
+        ))}
+      </ul>
+    </Card>
+
+    {/* Map Card */}
+<div className="card p-4">
+  <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-[var(--card-br)]">
+    <iframe
+      src="https://www.openstreetmap.org/export/embed.html?bbox=-81.05,35.05,-80.65,35.35&layer=mapnik&marker=35.2271,-80.8431"
+      style={{ border: 0 }}
+      className="absolute inset-0 w-full h-full"
+      loading="lazy"
+    />
+  </div>
+</div>
+  </div>
+</Section>
 
       {/* FAQ */}
       <Section id="faq" title="FAQ">
