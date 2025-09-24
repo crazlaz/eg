@@ -93,3 +93,7 @@ body { background: var(--bg); color: var(--fg); overflow-x: hidden; }
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 @import "swiper/css/scrollbar";
+
+html {
+  scroll-behavior: smooth;
+}

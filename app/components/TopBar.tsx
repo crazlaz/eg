@@ -88,8 +88,9 @@ export default function TopBar({
             aria-label="Main"
             className="hidden md:flex items-center gap-6 text-sm text-[var(--muted)]"
           >
-            <a href="#service">Services</a>
+            <a href="#services">Services</a>
             <a href="#quote">Quote</a>
+            <a href="#testimonials">Testimonials</a> {/* ⭐ Added */}
             <a href="#faq">FAQ</a>
             <a href="#footer">Contact</a>
           </nav>
@@ -115,12 +116,7 @@ export default function TopBar({
               } mode`}
             >
               {theme === "dark" ? (
-                <svg
-                  viewBox="0 0 24 24"
-                  width="22"
-                  height="22"
-                  aria-hidden="true"
-                >
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
                   <path
                     d="M12 4V2m0 20v-2M4 12H2m20 0h-2M5.64 5.64 4.22 4.22m15.56 15.56-1.42-1.42M18.36 5.64l1.42-1.42M4.22 19.78l1.42-1.42"
                     fill="none"
@@ -131,12 +127,7 @@ export default function TopBar({
                   <circle cx="12" cy="12" r="4.5" fill="currentColor" />
                 </svg>
               ) : (
-                <svg
-                  viewBox="0 0 24 24"
-                  width="22"
-                  height="22"
-                  aria-hidden="true"
-                >
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
                   <path
                     d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"
                     fill="currentColor"
@@ -154,12 +145,7 @@ export default function TopBar({
               onClick={() => setMobileOpen((o) => !o)}
             >
               {mobileOpen ? (
-                <svg
-                  viewBox="0 0 24 24"
-                  width="26"
-                  height="26"
-                  aria-hidden="true"
-                >
+                <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
                   <path
                     d="M6 6l12 12M18 6l-12 12"
                     stroke="currentColor"
@@ -168,12 +154,7 @@ export default function TopBar({
                   />
                 </svg>
               ) : (
-                <svg
-                  viewBox="0 0 24 24"
-                  width="26"
-                  height="26"
-                  aria-hidden="true"
-                >
+                <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
                   <path
                     d="M3 6h18M3 12h18M3 18h18"
                     stroke="currentColor"
@@ -204,20 +185,12 @@ export default function TopBar({
               : undefined
           }
         >
-          <a href="#service" className="block px-4 py-3">
-            Services
-          </a>
-          <a href="#quote" className="block px-4 py-3">
-            Quote
-          </a>
-          <a href="#faq" className="block px-4 py-3">
-            FAQ
-          </a>
-          <a href="#footer" className="block px-4 py-3">
-            Contact
-          </a>
+          <a href="#services" className="block px-4 py-3">Services</a>
+          <a href="#quote" className="block px-4 py-3">Quote</a>
+          <a href="#testimonials" className="block px-4 py-3">Testimonials</a> {/* ⭐ Added */}
+          <a href="#faq" className="block px-4 py-3">FAQ</a>
+          <a href="#footer" className="block px-4 py-3">Contact</a>
 
-          {/* Mobile call button */}
           <div className="p-4">
             <a
               href={BRAND.phoneHref}
