@@ -87,3 +87,9 @@ body { background: var(--bg); color: var(--fg); overflow-x: hidden; }
     font-size: .9rem; /* Optionally adjust font size on mobile */
   }
 }
+
+
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+@import "swiper/css/scrollbar";

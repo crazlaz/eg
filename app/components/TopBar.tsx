@@ -88,7 +88,7 @@ export default function TopBar({
             aria-label="Main"
             className="hidden md:flex items-center gap-6 text-sm text-[var(--muted)]"
           >
-            <a href="#services">Services</a>
+            <a href="#service">Services</a>
             <a href="#quote">Quote</a>
             <a href="#faq">FAQ</a>
             <a href="#footer">Contact</a>
