@@ -3,6 +3,9 @@
 import QuoteForm from "../components/QuoteForm";
 import { BRAND } from "../lib/brand";
 import Image from "next/image";
+import { LightBulbIcon } from "@heroicons/react/24/solid";
+
+
 /* tiny helper */
 function Dot() {
   return (
@@ -19,76 +22,87 @@ function Dot() {
   );
 }
 
-/* Full-bleed background image */
+/* Background image (fills hero) */
 function HeroBG() {
   return (
-    <div aria-hidden={true} className="hero-bg">
+    <div aria-hidden={true} className="absolute inset-0 -z-10">
       <img
-        src="/ctl3.jpeg" /* ensure this file exists in /public */
+        src="/ctl3.jpeg"
         alt=""
-        className="hero-bg-img"
+        className="w-full h-full object-cover"
         loading="eager"
         decoding="async"
       />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/20 to-black/40" />
     </div>
   );
 }
+
 export default function Hero({
-    theme,
+  theme,
   setTheme,
 }: {
   theme: "dark" | "light";
   setTheme: React.Dispatch<React.SetStateAction<"dark" | "light">>;
 }) {
   return (
-    <section id="top" className="hero-section" aria-label="Hero">
-      {/* Background image */}
-      <HeroBG />
+    <section id="top" className="relative isolate" aria-label="Hero">
+      {/* ===== HERO IMAGE + OVERLAYED TAGLINE/LOGO ===== */}
+      <div className="relative min-h-[70vh] md:min-h-[85vh]">
+        <HeroBG />
 
-  {/* Gradient tagline BELOW image */}
-<div className="w-full text-center mt-6 animate-pulse">
-  <h2 className="text-4xl md:text-6xl font-extrabold uppercase bg-gradient-to-l from-red-700 via-red-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-lg tracking-tight">
-    Illuminating the Carolinas
-  </h2>
-  {/* Logo centered below tagline */}
-  <div className="mt-4 flex justify-center">
-    {theme === "dark" ? (
-      <Image
-        src="/company2.png"
-        alt={`${BRAND.name} logo dark`}
-        width={350}
-        height={120}
-        className="h-24 md:h-28 w-auto object-contain"
-      />
-    ) : (
-      <Image
-        src="/company.png"
-        alt={`${BRAND.name} logo light`}
-        width={350}
-        height={120}
-        className="h-24 md:h-28 w-auto object-contain"
-      />
-    )}
-  </div>
-  
+        {/* Overlay anchored at top-center */}
+        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center px-4 text-center">
+          {/* Always use dark logo */}
+          <Image
+            src="/company2.png"
+            alt={`${BRAND.name} logo dark`}
+            width={420}
+            height={140}
+            className="h-20 md:h-28 w-auto object-contain"
+            priority
+          />
 
-</div>
-
-
-      {/* top trust strip */}
-      <div className="container">
-        <div className="top-strip">
-          <span className="chip">Call Now for Fast Service</span>
-          <a href={BRAND.phoneHref} className="btn btn-accent btn-sm">
-            ☎ {BRAND.phonePretty}
-          </a>
-          <a href="#quote" className="btn btn-outline btn-sm">
-            Request Service
-          </a>
+          {/* Tagline */}
+          <h2 className="mt-3 text-3xl md:text-5xl font-extrabold uppercase bg-gradient-to-l from-red-900 via-red-300 to-yellow-200 bg-clip-text text-transparent drop-shadow-lg tracking-tight animate-pulse">
+            Illuminating the Carolinas
+          </h2>
         </div>
       </div>
 
-      <div className="container pt-5 pb-8">
+      {/* ===== CONTENT BELOW THE HERO IMAGE ===== */}
+
+{/* Headline row (separate from the top-strip) */}
+<div className="container relative z-10">
+{/* Light bulb above the words */}
+<div className="flex justify-center pt-12 mb-3">
+  <LightBulbIcon
+    className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-yellow-400 animate-pulse"
+    style={{ filter: "drop-shadow(0 0 12px rgba(252, 202, 4, 0.99))" }}
+    aria-hidden="true"
+  />
+</div>
+
+<h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold uppercase bg-gradient-to-l from-red-700 via-orange-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-lg tracking-tight text-center">
+  Quality is Our Priority
+</h2>
+
+
+  {/* top trust strip (keep this small, no big headings inside) */}
+  <div className="top-strip mt-3">
+    <span className="chip">Call Now for Fast Service</span>
+    <a href={BRAND.phoneHref} className="btn btn-accent btn-sm">
+      ☎ {BRAND.phonePretty}
+    </a>
+    <a href="#quote" className="btn btn-outline btn-sm">
+      Request Service
+    </a>
+  </div>
+
+      </div>
+
+      {/* main hero content */}
+      <div className="container pt-5 pb-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 items-start mt-4">
           {/* Left: headline + bullets + badges */}
           <div>
@@ -110,8 +124,8 @@ export default function Hero({
             </h1>
 
             <p className="mt-3 text-[1.1rem]" style={{ color: "var(--muted)" }}>
-              Up-front pricing. Clean, professional work. From panel upgrades to
-              EV chargers — we always get it done right the first time.
+              No surprises. Just safe, reliable power — installed the right way,
+              the first time. From panel upgrades to EV chargers, we’ve got you.
             </p>
 
             <div className="mt-5 flex flex-wrap gap-3">
@@ -183,38 +197,10 @@ export default function Hero({
       </div>
 
       {/* divider to next section */}
-      <div className="divider" />
+      <div className="divider relative z-10" />
 
-      {/* single styled-jsx block */}
+      {/* styles */}
       <style jsx>{`
-        .hero-section {
-          position: relative;
-          overflow: hidden;
-          isolation: isolate;
-          min-height: min(90vh, 820px);
-          display: block;
-        }
-        @supports (overflow: clip) {
-          .hero-section {
-            overflow: clip;
-          }
-        }
-
-        /* BACKGROUND LAYER */
-        .hero-bg {
-          position: relative;
-          width: 100%;
-          height: auto;
-        }
-        .hero-bg-img {
-          width: 100%;
-          height: auto;
-          object-fit: cover;
-          object-position: center center;
-          display: block;
-        }
-
-        /* top trust strip */
         .top-strip {
           margin-top: 0.75rem;
           display: flex;
@@ -230,8 +216,6 @@ export default function Hero({
         .btn-sm {
           padding: 0.35rem 0.7rem;
         }
-
-        /* hero bullets */
         .hero-bullets {
           display: grid;
           gap: 0.75rem;
