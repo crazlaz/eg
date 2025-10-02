@@ -163,36 +163,7 @@ export default function Hero({
           </div>
 
           {/* Right: request form card */}
-          <div className="card shadow-accent p-4 sm:p-6 lg:p-8">
-            <div className="bg-white/10 border border-[var(--card-br)] rounded-xl backdrop-blur-md p-5 sm:p-6 lg:p-8 space-y-5">
-              <div>
-                <h2 className="text-lg font-semibold">Request Service</h2>
-                <p className="text-sm text-[var(--muted)] mt-1">
-                  Tell us what you need — we’ll respond quickly.
-                </p>
-              </div>
-
-              <QuoteForm />
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href={BRAND.phoneHref}
-                  className="btn btn-accent flex-1 text-center"
-                >
-                  ☎ Call Now
-                </a>
-                <a href="#faq" className="btn btn-outline flex-1 text-center">
-                  FAQs
-                </a>
-              </div>
-
-              <div className="flex flex-wrap gap-2 text-[var(--muted)] text-sm">
-                <span className="chip">✓ Background-Checked</span>
-                <span className="chip">🛡 Warranty</span>
-                <span className="chip">⚡ EV Certified</span>
-              </div>
-            </div>
-          </div>
+      
         </div>
       </div>
 
