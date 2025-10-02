@@ -72,7 +72,7 @@ export default function TopBar({
       >
         <div className="container flex h-14 items-center justify-between gap-4">
           {/* Logo */}
-          <a href="#top" aria-label={BRAND.name} className="flex items-center">
+          <a href="/" aria-label={BRAND.name} className="flex items-center">
             <Image
               src={theme === "dark" ? "/company2.png" : "/company.png"}
               alt={BRAND.name}
@@ -88,11 +88,12 @@ export default function TopBar({
             aria-label="Main"
             className="hidden md:flex items-center gap-6 text-sm text-[var(--muted)]"
           >
-            <a href="#services">Services</a>
-            <a href="#quote">Quote</a>
-            <a href="#testimonials">Testimonials</a> {/* ⭐ Added */}
-            <a href="#faq">FAQ</a>
-            <a href="#footer">Contact</a>
+            <a href="/#services">Services</a>
+            <a href="/about">About</a>
+            <a href="/#quote">Quote</a>
+            <a href="/#testimonials">Testimonials</a>
+            <a href="/#faq">FAQ</a>
+            <a href="/#footer">Contact</a>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -185,11 +186,12 @@ export default function TopBar({
               : undefined
           }
         >
-          <a href="#services" className="block px-4 py-3">Services</a>
-          <a href="#quote" className="block px-4 py-3">Quote</a>
-          <a href="#testimonials" className="block px-4 py-3">Testimonials</a> {/* ⭐ Added */}
-          <a href="#faq" className="block px-4 py-3">FAQ</a>
-          <a href="#footer" className="block px-4 py-3">Contact</a>
+          <a href="/#services" className="block px-4 py-3">Services</a>
+          <a href="/about" className="block px-4 py-3">About</a>
+          <a href="/#quote" className="block px-4 py-3">Quote</a>
+          <a href="/#testimonials" className="block px-4 py-3">Testimonials</a>
+          <a href="/#faq" className="block px-4 py-3">FAQ</a>
+          <a href="/#footer" className="block px-4 py-3">Contact</a>
 
           <div className="p-4">
             <a
