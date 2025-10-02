@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { BRAND } from "../lib/brand";
 import { formatPhone } from "../lib/phone";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function TopBar({
   theme,
@@ -72,7 +73,7 @@ export default function TopBar({
       >
         <div className="container flex h-14 items-center justify-between gap-4">
           {/* Logo */}
-          <a href="/" aria-label={BRAND.name} className="flex items-center">
+          <Link href="/" aria-label={BRAND.name} className="flex items-center">
             <Image
               src={theme === "dark" ? "/company2.png" : "/company.png"}
               alt={BRAND.name}
@@ -81,29 +82,29 @@ export default function TopBar({
               className="object-contain h-10 w-auto transition-opacity duration-300"
               priority
             />
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <nav
             aria-label="Main"
             className="hidden md:flex items-center gap-6 text-sm text-[var(--muted)]"
           >
-            <a href="/#services">Services</a>
-            <a href="/about">About</a>
-            <a href="/#quote">Quote</a>
-            <a href="/#testimonials">Testimonials</a>
-            <a href="/#faq">FAQ</a>
-            <a href="/#footer">Contact</a>
+            <Link href="/#services">Services</Link>
+            <Link href="/about">About</Link>
+            <Link href="/#quote">Quote</Link>
+            <Link href="/#testimonials">Testimonials</Link>
+            <Link href="/#faq">FAQ</Link>
+            <Link href="/#footer">Contact</Link>
           </nav>
 
           <div className="flex items-center gap-2">
             {/* Desktop phone button */}
-            <a
+            <Link
               href={BRAND.phoneHref}
               className="hidden md:inline-flex items-center justify-center rounded-md border border-[var(--border)] bg-[var(--bgElev)] px-3 py-1.5 text-sm font-medium text-[var(--fg)] hover:bg-[var(--bgHover)] transition"
             >
               Call {formatPhone(BRAND.phone)}
-            </a>
+            </Link>
 
             {/* Theme toggle */}
             <button
@@ -186,20 +187,20 @@ export default function TopBar({
               : undefined
           }
         >
-          <a href="/#services" className="block px-4 py-3">Services</a>
-          <a href="/about" className="block px-4 py-3">About</a>
-          <a href="/#quote" className="block px-4 py-3">Quote</a>
-          <a href="/#testimonials" className="block px-4 py-3">Testimonials</a>
-          <a href="/#faq" className="block px-4 py-3">FAQ</a>
-          <a href="/#footer" className="block px-4 py-3">Contact</a>
+          <Link href="/#services" className="block px-4 py-3">Services</Link>
+          <Link href="/about" className="block px-4 py-3">About</Link>
+          <Link href="/#quote" className="block px-4 py-3">Quote</Link>
+          <Link href="/#testimonials" className="block px-4 py-3">Testimonials</Link>
+          <Link href="/#faq" className="block px-4 py-3">FAQ</Link>
+          <Link href="/#footer" className="block px-4 py-3">Contact</Link>
 
           <div className="p-4">
-            <a
+            <Link
               href={BRAND.phoneHref}
               className="w-full inline-flex items-center justify-center rounded-md border border-[var(--border)] bg-[var(--bgElev)] px-4 py-2 text-base font-medium text-[var(--fg)] hover:bg-[var(--bgHover)] transition"
             >
               Call {formatPhone(BRAND.phone)}
-            </a>
+            </Link>
           </div>
         </div>
       </header>

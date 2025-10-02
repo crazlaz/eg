@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { BRAND } from "../lib/brand";
 import Image from "next/image";
+import Link from "next/link";
 import Section from "../components/Section";
 import Card from "../components/Card";
 import TopBar from "../components/TopBar";
@@ -33,7 +34,6 @@ export default function AboutPage() {
 
       {/* HERO */}
       <section className="relative isolate overflow-hidden">
-        {/* Background animated grid */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-red-900 via-orange-800 to-yellow-500">
           <div className="absolute inset-0 opacity-20 bg-[linear-gradient(90deg,transparent_95%,rgba(255,255,255,.05)_95%),linear-gradient(0deg,transparent_95%,rgba(255,255,255,.05)_95%)] bg-[length:24px_24px]" />
         </div>
@@ -155,20 +155,17 @@ export default function AboutPage() {
           efficient.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-5">
-          <a href={BRAND.phoneHref} className="btn btn-accent text-lg px-6 py-3">
+          <Link href={BRAND.phoneHref} className="btn btn-accent text-lg px-6 py-3">
             📞 Call {BRAND.phonePretty}
-          </a>
-          <a href="/#quote" className="btn btn-outline text-lg px-6 py-3">
+          </Link>
+          <Link href="/#quote" className="btn btn-outline text-lg px-6 py-3">
             Request Service
-          </a>
+          </Link>
         </div>
       </motion.section>
 
       {/* FOOTER */}
-      <footer
-        id="footer"
-        className="border-t border-[var(--card-br)] bg-[var(--bgElev)] mt-12"
-      >
+      <footer id="footer" className="border-t border-[var(--card-br)] bg-[var(--bgElev)] mt-12">
         <div className="container py-12">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
@@ -176,18 +173,12 @@ export default function AboutPage() {
               <p className="text-sm text-[var(--muted)] mt-1">{BRAND.city}</p>
               <p className="text-sm text-[var(--muted)]">{BRAND.license}</p>
               <div className="flex gap-3 mt-4">
-                <a
-                  href={BRAND.phoneHref}
-                  className="text-sm font-medium text-[var(--fg)] hover:text-[var(--accent)] transition"
-                >
+                <Link href={BRAND.phoneHref} className="text-sm font-medium text-[var(--fg)] hover:text-[var(--accent)] transition">
                   📞 {BRAND.phonePretty}
-                </a>
-                <a
-                  href={BRAND.emailHref}
-                  className="text-sm font-medium text-[var(--fg)] hover:text-[var(--accent)] transition"
-                >
+                </Link>
+                <Link href={BRAND.emailHref} className="text-sm font-medium text-[var(--fg)] hover:text-[var(--accent)] transition">
                   ✉ Email Us
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -206,17 +197,17 @@ export default function AboutPage() {
             <div>
               <h4 className="font-semibold mb-2 text-[var(--fg)]">Navigation</h4>
               <ul className="space-y-1 text-[var(--muted)]">
-                <li><a href="/#services" className="hover:text-[var(--accent)]">Services</a></li>
-                <li><a href="/about" className="hover:text-[var(--accent)]">About</a></li>
-                <li><a href="/#quote" className="hover:text-[var(--accent)]">Request Quote</a></li>
-                <li><a href="/#faq" className="hover:text-[var(--accent)]">FAQ</a></li>
+                <li><Link href="/#services" className="hover:text-[var(--accent)]">Services</Link></li>
+                <li><Link href="/about" className="hover:text-[var(--accent)]">About</Link></li>
+                <li><Link href="/#quote" className="hover:text-[var(--accent)]">Request Quote</Link></li>
+                <li><Link href="/#faq" className="hover:text-[var(--accent)]">FAQ</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-2 text-[var(--fg)]">Legal</h4>
               <ul className="space-y-1 text-[var(--muted)]">
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
+                <li><Link href="#">Privacy Policy</Link></li>
+                <li><Link href="#">Terms of Service</Link></li>
               </ul>
             </div>
           </div>
@@ -227,7 +218,6 @@ export default function AboutPage() {
         </div>
       </footer>
 
-      {/* Custom animation style */}
       <style jsx>{`
         .animate-pulse-slow {
           animation: pulse 3s infinite;
