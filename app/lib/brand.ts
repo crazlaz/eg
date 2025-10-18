@@ -4,7 +4,7 @@ export const BRAND = {
   phoneHref: "tel:+19803136730",
   email: "egelectricllc@outlook.com",
   emailHref: "mailto:egelectricllc@outlook.com",
-  city: "Charlotte, NC",
+  city: "The Carolinas",
   license: "Licensed & Insured",
 
   get phonePretty() {

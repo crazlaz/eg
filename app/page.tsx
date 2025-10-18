@@ -265,7 +265,7 @@ export default function Page() {
       </Section>
 
       {/* SERVICE AREA */}
-      <Section title="Proudly Serving Greater Charlotte">
+      <Section title="Proudly Serving The Carolinas!">
         <div className="grid gap-4 md:grid-cols-2">
           <Card title="Service Areas" icon="📍">
             <ul className="grid gap-1 mt-1 text-[0.95rem] text-[var(--muted)] grid-cols-1 sm:grid-cols-2">
