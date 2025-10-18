@@ -28,37 +28,37 @@ const SERVICE_DATA: Record<
   "Wiring & Rewiring": {
     description:
       "From new construction to remodels, our expert wiring ensures safety, efficiency, and long-lasting performance in every connection.",
-    images: [{ src: "/1.PNG", alt: "Wiring project" }],
+    images: [{ src: "/7.PNG", alt: "Wiring project" }],
   },
   "Panels & Meters": {
     description:
       "Power today’s appliances with confidence. We upgrade old panels and meters to modern systems that improve safety and reliability.",
-    images: [{ src: "/3.PNG", alt: "Panel upgrade" }],
+    images: [{ src: "/99.jpeg", alt: "Panel upgrade" }],
   },
   "EV Chargers": {
     description:
       "Charge at the speed of life. We install EV chargers that fit your vehicle and deliver fast, dependable charging at home.",
-    images: [{ src: "/4.PNG", alt: "EV charger installation" }],
+    images: [{ src: "/ev.jpg", alt: "EV charger installation" }],
   },
   Generators: {
     description:
       "Be ready when the power fails. Our standby generators keep lights, HVAC, and essentials running no matter the storm.",
-    images: [{ src: "/5.PNG", alt: "Backup generator" }],
+    images: [{ src: "/gen.jpg", alt: "Backup generator" }],
   },
   "Solar System Installations": {
     description:
       "Harness the sun’s power with solar systems tailored to your home. Lower bills, reduce reliance on utilities, and invest in clean energy.",
-    images: [{ src: "/6.JPEG", alt: "Solar installation" }],
+    images: [{ src: "/ss.JPG", alt: "Solar installation" }],
   },
   "Lighting & Ceiling Fans": {
     description:
       "Brighten your world. From elegant interior fixtures to durable outdoor lighting, plus ceiling fans for comfort and efficiency.",
-    images: [{ src: "/7.PNG", alt: "Lighting and ceiling fans" }],
+    images: [{ src: "/2.PNG", alt: "Lighting and ceiling fans" }],
   },
   Troubleshooting: {
     description:
       "Electrical mystery? Solved. We diagnose and repair issues quickly, restoring safety and peace of mind without the guesswork.",
-    images: [{ src: "/8.PNG", alt: "Troubleshooting electrical issues" }],
+    images: [{ src: "/ts.JPG", alt: "Troubleshooting electrical issues" }],
   },
 };
 
