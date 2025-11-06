@@ -89,12 +89,12 @@ export default function TopBar({
             aria-label="Main"
             className="hidden md:flex items-center gap-6 text-sm text-[var(--muted)]"
           >
-            <Link href="/#services">Services</Link>
+            <Link href="/services">Services</Link>
             <Link href="/about">About</Link>
             <Link href="/#quote">Quote</Link>
-            <Link href="/#testimonials">Testimonials</Link>
-            <Link href="/#faq">FAQ</Link>
-            <Link href="/#footer">Contact</Link>
+            <Link href="/testimonials">Testimonials</Link>
+            <Link href="/faq">FAQ</Link>
+
           </nav>
 
           <div className="flex items-center gap-2">
@@ -187,12 +187,12 @@ export default function TopBar({
               : undefined
           }
         >
-          <Link href="/#services" className="block px-4 py-3">Services</Link>
+          <Link href="/services" className="block px-4 py-3">Services</Link>
           <Link href="/about" className="block px-4 py-3">About</Link>
           <Link href="/#quote" className="block px-4 py-3">Quote</Link>
-          <Link href="/#testimonials" className="block px-4 py-3">Testimonials</Link>
-          <Link href="/#faq" className="block px-4 py-3">FAQ</Link>
-          <Link href="/#footer" className="block px-4 py-3">Contact</Link>
+          <Link href="/testimonials" className="block px-4 py-3">Testimonials</Link>
+          <Link href="/faq" className="block px-4 py-3">FAQ</Link>
+         
 
           <div className="p-4">
             <Link

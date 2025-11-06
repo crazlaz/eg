@@ -172,65 +172,9 @@ export default function Page() {
       <Hero theme={theme} setTheme={setTheme} />
       <div className="divider" />
 
-      {/* GLOBAL SERVICES CAROUSEL */}
-      <Section title="">
-        <div className="text-center mb-6">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-[var(--fg)] tracking-tight">
-            See the Difference With Our Work
-          </h2>
-          <p className="text-[var(--muted)] mt-2 max-w-2xl mx-auto">
-            Real results from projects we’ve proudly completed across Charlotte
-            & surrounding areas.
-          </p>
-        </div>
 
-        <Swiper
-          modules={[Navigation, Autoplay, Pagination]}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 1300, disableOnInteraction: false }}
-          loop
-          className="relative rounded-xl overflow-hidden shadow-2xl"
-        >
-          {Object.values(SERVICE_DATA)
-            .flatMap((s) => s.images)
-            .map((img, i) => (
-              <SwiperSlide key={i}>
-                <div className="relative w-full h-64 md:h-[32rem]">
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
-                </div>
-              </SwiperSlide>
-            ))}
-        </Swiper>
-      </Section>
 
-      {/* SERVICE ICON GRID */}
-      <div id="services" className="mt-8">
-        <h3 className="text-center text-lg md:text-xl font-semibold text-[var(--fg)] mb-4">
-          Our Core Services
-        </h3>
-
-        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          {Object.keys(SERVICE_DATA).map((label) => (
-            <li
-              key={label}
-              onClick={() => setSelected(label)}
-              className="group relative overflow-hidden rounded-xl border border-[var(--card-br)] bg-[var(--bgElev)] p-3 flex items-center gap-3 hover:shadow-xl transition-shadow cursor-pointer"
-            >
-              ⚡
-              <span className="font-bold text-sm md:text-[0.95rem] text-[var(--fg)]">
-                {label}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
+  
       {/* WHY US */}
       <Section title="Why Homeowners Choose EG ELECTRIC">
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -247,22 +191,7 @@ export default function Page() {
         </div>
       </Section>
 
-      {/* TESTIMONIALS */}
-      <Section title="What Customers Say" id="testimonials">
-        <div className="grid gap-4 md:grid-cols-3">
-          <Quote name="T. Ramirez" city="Charlotte">
-            Called in the morning, panel issue fixed by afternoon. Clean and
-            professional.
-          </Quote>
-          <Quote name="K. Patel" city="Huntersville">
-            They installed our EV charger fast and walked us through everything.
-          </Quote>
-          <Quote name="D. Moore" city="Concord">
-            Fair price, neat work, and they even cleaned up afterwards.
-            Recommended.
-          </Quote>
-        </div>
-      </Section>
+
 
       {/* SERVICE AREA */}
       <Section title="Proudly Serving The Carolinas!">
@@ -297,25 +226,7 @@ export default function Page() {
         </div>
       </Section>
 
-      {/* FAQ */}
-      <Section id="faq" title="FAQ">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Faq q="Do you offer same-day service?">
-            Yes — call us at {phonePretty}. We do our best to get a tech out
-            same-day or next-day.
-          </Faq>
-          <Faq q="How do you price jobs?">
-            After diagnosing, we provide a clear, up-front estimate before work
-            begins.
-          </Faq>
-          <Faq q="Are you licensed and insured?">
-            Absolutely. {BRAND.license}. All technicians are background-checked.
-          </Faq>
-          <Faq q="What payment methods do you accept?">
-            Most major cards, debit, and bank. Ask about financing options.
-          </Faq>
-        </div>
-      </Section>
+
 
       {/* REQUEST SERVICE */}
       <section id="quote" className="container py-12">

@@ -5,6 +5,12 @@ import { BRAND } from "../lib/brand";
 import Image from "next/image";
 import { LightBulbIcon } from "@heroicons/react/24/solid";
 
+// --- NEW: Swiper imports for the mini slideshow ---
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 /* tiny helper */
 function Dot() {
@@ -37,6 +43,17 @@ function HeroBG() {
     </div>
   );
 }
+
+// --- NEW: small slideshow image set (uses your existing public images) ---
+const HERO_SLIDES = [
+  { src: "/7.PNG", alt: "Wiring project" },
+  { src: "/99.jpeg", alt: "Panel upgrade" },
+  { src: "/ev.jpg", alt: "EV charger install" },
+  { src: "/gen.jpg", alt: "Backup generator" },
+  { src: "/ss.JPG", alt: "Solar array install" },
+  { src: "/2.PNG", alt: "Lighting & fans" },
+  { src: "/ts.JPG", alt: "Troubleshooting" },
+];
 
 export default function Hero({
   theme,
@@ -71,34 +88,59 @@ export default function Hero({
       </div>
 
       {/* ===== CONTENT BELOW THE HERO IMAGE ===== */}
+      <div className="container relative z-10">
+        {/* --- NEW: Mini slideshow (right above the bulb) --- */}
+        <div className="mt-6">
+          <Swiper
+            modules={[Navigation, Autoplay, Pagination]}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 1800, disableOnInteraction: false }}
+            loop
+            className="relative rounded-xl overflow-hidden border border-[var(--card-br)]"
+          >
+            {HERO_SLIDES.map((img, i) => (
+              <SwiperSlide key={`${img.src}-${i}`}>
+                <div className="relative w-full h-48 sm:h-56 md:h-64">
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
+                  <div className="absolute bottom-2 left-3 right-3 text-white text-xs sm:text-sm drop-shadow">
+                    {img.alt}
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
-{/* Headline row (separate from the top-strip) */}
-<div className="container relative z-10">
-{/* Light bulb above the words */}
-<div className="flex justify-center pt-12 mb-3">
-  <LightBulbIcon
-    className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-yellow-400 animate-pulse"
-    style={{ filter: "drop-shadow(0 0 12px rgba(252, 202, 4, 0.99))" }}
-    aria-hidden="true"
-  />
-</div>
+        {/* Light bulb above the words */}
+        <div className="flex justify-center pt-8 mb-3">
+          <LightBulbIcon
+            className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-yellow-400 animate-pulse"
+            style={{ filter: "drop-shadow(0 0 12px rgba(252, 202, 4, 0.99))" }}
+            aria-hidden="true"
+          />
+        </div>
 
-<h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold uppercase bg-gradient-to-l from-red-700 via-orange-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-lg tracking-tight text-center">
-  Quality is Our Priority
-</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold uppercase bg-gradient-to-l from-red-700 via-orange-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-lg tracking-tight text-center">
+          Quality is Our Priority
+        </h2>
 
-
-  {/* top trust strip (keep this small, no big headings inside) */}
-  <div className="top-strip mt-3">
-    <span className="chip">Call Now for Fast Service</span>
-    <a href={BRAND.phoneHref} className="btn btn-accent btn-sm">
-      ☎ {BRAND.phonePretty}
-    </a>
-    <a href="#quote" className="btn btn-outline btn-sm">
-      Request Service
-    </a>
-  </div>
-
+        {/* top trust strip (keep this small, no big headings inside) */}
+        <div className="top-strip mt-3">
+          <span className="chip">Call Now for Fast Service</span>
+          <a href={BRAND.phoneHref} className="btn btn-accent btn-sm">
+            ☎ {BRAND.phonePretty}
+          </a>
+          <a href="#quote" className="btn btn-outline btn-sm">
+            Request Service
+          </a>
+        </div>
       </div>
 
       {/* main hero content */}
@@ -162,8 +204,7 @@ export default function Hero({
             </div>
           </div>
 
-          {/* Right: request form card */}
-      
+          {/* Right: request form card (intentionally omitted in your snippet) */}
         </div>
       </div>
 
