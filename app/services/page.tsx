@@ -139,7 +139,7 @@ function ServiceModal({
             )}
 
             <div className="mt-5 flex gap-2">
-              <a href={`tel:${BRAND.phone}`} className="btn btn-accent">☎ Call {BRAND.phonePretty}</a>
+              <Link href={`tel:${BRAND.phone}`} className="btn btn-accent">☎ Call {BRAND.phonePretty}</Link>
               <Link href="/quote" className="btn btn-outline">Get Free Estimate</Link>
             </div>
 
@@ -314,7 +314,7 @@ export default function ServicesPage() {
               </p>
             </div>
             <div className="flex gap-2">
-              <a href={`tel:${BRAND.phone}`} className="btn btn-accent">☎ {BRAND.phonePretty}</a>
+              <Link href={`tel:${BRAND.phone}`} className="btn btn-accent">☎ {BRAND.phonePretty}</Link>
               <Link href="/quote" className="btn btn-outline">Get Free Estimate</Link>
             </div>
           </div>
@@ -382,7 +382,7 @@ export default function ServicesPage() {
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
             <Link href="/quote" className="btn btn-accent text-center">Request Quote</Link>
-            <a href={`tel:${BRAND.phone}`} className="btn btn-outline text-center">Call {BRAND.phonePretty}</a>
+            <Link href={`tel:${BRAND.phone}`} className="btn btn-outline text-center">Call {BRAND.phonePretty}</Link>
           </div>
         </div>
       </section>
@@ -390,7 +390,7 @@ export default function ServicesPage() {
       {/* Sticky Mobile CTA */}
       <div className="fixed bottom-2 left-2 right-2 z-40 md:hidden">
         <div className="flex gap-2">
-          <a href={`tel:${BRAND.phone}`} className="btn btn-accent flex-1 text-center">Call {BRAND.phonePretty}</a>
+          <Link href={`tel:${BRAND.phone}`} className="btn btn-accent flex-1 text-center">Call {BRAND.phonePretty}</Link>
           <Link href="/quote" className="btn btn-outline flex-1 text-center">Get Quote</Link>
         </div>
       </div>
@@ -404,9 +404,9 @@ export default function ServicesPage() {
               <p className="text-sm text-[var(--muted)] mt-1">{BRAND.city}</p>
               <p className="text-sm text-[var(--muted)]">{BRAND.license}</p>
               <div className="flex gap-3 mt-4">
-                <a href={`tel:${BRAND.phone}`} className="text-sm font-medium text-[var(--fg)] hover:text-[var(--accent)] transition">📞 {BRAND.phonePretty}</a>
+                <Link href={`tel:${BRAND.phone}`} className="text-sm font-medium text-[var(--fg)] hover:text-[var(--accent)] transition">📞 {BRAND.phonePretty}</Link>
                 {BRAND.emailHref && (
-                  <a href={BRAND.emailHref} className="text-sm font-medium text-[var(--fg)] hover:text-[var(--accent)] transition">✉ Email Us</a>
+                  <Link href={BRAND.emailHref} className="text-sm font-medium text-[var(--fg)] hover:text-[var(--accent)] transition">✉ Email Us</Link>
                 )}
               </div>
             </div>
@@ -430,7 +430,7 @@ export default function ServicesPage() {
                 <li><Link href="/quote" className="hover:text-[var(--accent)]">Request Quote</Link></li>
                 <li><Link href="/faq" className="hover:text-[var(--accent)]">FAQ</Link></li>
                 <li><Link href="/service-area" className="hover:text-[var(--accent)]">Service Area</Link></li>
-                <li><a href="/#top" className="hover:text-[var(--accent)]">Back to Top</a></li>
+                <li><Link href="/#top" className="hover:text-[var(--accent)]">Back to Top</Link></li>
               </ul>
             </div>
             <div>

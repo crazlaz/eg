@@ -186,9 +186,9 @@ export default function FAQPage() {
               "How do you price jobs?",
               "Are you licensed and insured?",
             ].map((qq) => (
-              <a key={qq} href={`#${slugify(qq)}`} className="underline">
+              <Link key={qq} href={`#${slugify(qq)}`} className="underline">
                 {qq}
-              </a>
+              </Link>
             ))}
           </span>
         </div>
@@ -219,9 +219,9 @@ export default function FAQPage() {
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
             <Link href="/#quote" className="btn btn-accent text-center">Get a Free Estimate</Link>
-            <a href={BRAND.phoneHref} className="btn btn-outline text-center">
+            <Link href={BRAND.phoneHref} className="btn btn-outline text-center">
               Call {phonePretty}
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -235,19 +235,19 @@ export default function FAQPage() {
               <p className="text-sm text-[var(--muted)] mt-1">{BRAND.city}</p>
               <p className="text-sm text-[var(--muted)]">{BRAND.license}</p>
               <div className="flex gap-3 mt-4">
-                <a
+                <Link
                   href={BRAND.phoneHref}
                   className="text-sm font-medium text-[var(--fg)] hover:text-[var(--accent)] transition"
                 >
                   📞 {BRAND.phonePretty}
-                </a>
+                </Link>
                 {BRAND.emailHref && (
-                  <a
+                  <Link
                     href={BRAND.emailHref}
                     className="text-sm font-medium text-[var(--fg)] hover:text-[var(--accent)] transition"
                   >
                     ✉ Email Us
-                  </a>
+                  </Link>
                 )}
               </div>
             </div>
@@ -271,7 +271,7 @@ export default function FAQPage() {
                 <li><Link href="/quote" className="hover:text-[var(--accent)]">Request Quote</Link></li>
                 <li><Link href="/faq" className="hover:text-[var(--accent)]">FAQ</Link></li>
                 <li><Link href="/service-area" className="hover:text-[var(--accent)]">Service Area</Link></li>
-                <li><a href="/#top" className="hover:text-[var(--accent)]">Back to Top</a></li>
+                <li><Link href="/#top" className="hover:text-[var(--accent)]">Back to Top</Link></li>
               </ul>
             </div>
             <div>

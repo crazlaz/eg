@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BRAND } from "../lib/brand";
-import Image from "next/image";
 import Link from "next/link";
 import Section from "../components/Section";
 import Card from "../components/Card";
