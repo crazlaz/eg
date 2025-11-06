@@ -3,76 +3,92 @@
 import { JSX, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Script from "next/script";
+import Image from "next/image";
 
 import TopBar from "../components/TopBar";
 import Section from "../components/Section";
 import Faq from "../components/Faq";
-import Image from "next/image";
 
 import { BRAND } from "../lib/brand";
 import { formatPhone } from "../lib/phone";
 
 /* -------------------------------
-   FAQ DATA (extend anytime)
+   FAQ DATA
 --------------------------------*/
 type FaqItem = {
   q: string;
-  a: JSX.Element | string;
+  a: string | JSX.Element;
   cats?: string[];
 };
 
 const BASE_FAQ: FaqItem[] = [
   {
     q: "Do you offer same-day service?",
-    a: <>Yes — call us at {formatPhone(BRAND.phone)}. We do our best to get a tech out same-day or next-day.</>,
+    a: `Yes — call us at ${formatPhone(BRAND.phone)}. We do our best to get a tech out same-day or next-day.`,
     cats: ["Scheduling", "General"],
   },
   {
     q: "How do you price jobs?",
-    a: <>After diagnosing, we provide a clear, up-front estimate before work begins.</>,
+    a: "After diagnosing, we provide a clear, up-front estimate before work begins.",
     cats: ["Pricing", "General"],
   },
   {
     q: "Are you licensed and insured?",
-    a: <>Absolutely. {BRAND.license}. All technicians are background-checked.</>,
+    a: `Absolutely. ${BRAND.license}. All technicians are background-checked.`,
     cats: ["Credentials", "General"],
   },
   {
     q: "What payment methods do you accept?",
-    a: <>Most major cards, debit, and bank. Ask about financing options.</>,
+    a: "Most major cards, debit, and bank. Ask about financing options.",
     cats: ["Payments", "Billing"],
   },
-  // Extras to feel complete
   {
     q: "Which areas do you service?",
-    a: <>We serve {BRAND.city} and surrounding areas across the Carolinas. See the full list on our{" "}
-      <Link href="/service-area" className="underline">Service Area</Link> page.</>,
+    a: (
+      <>
+        We serve {BRAND.city} and surrounding areas across the Carolinas. See the
+        full list on our{" "}
+        <Link href="/service-area" className="underline">
+          Service Area
+        </Link>{" "}
+        page.
+      </>
+    ),
     cats: ["Service Area", "General"],
   },
   {
     q: "Do you provide free estimates?",
-    a: <>Yes. Call {formatPhone(BRAND.phone)} or request one on our{" "}
-      <Link href="/quote" className="underline">Request Quote</Link> page.</>,
+    a: (
+      <>
+        Yes. Call {formatPhone(BRAND.phone)} or request one on our{" "}
+        <Link href="/quote" className="underline">
+          Request Quote
+        </Link>{" "}
+        page.
+      </>
+    ),
     cats: ["Pricing", "General"],
   },
   {
     q: "What warranties do you offer?",
-    a: <>We stand behind our work. Ask your technician for warranty details specific to your parts and scope.</>,
+    a: "We stand behind our work. Ask your technician for warranty details specific to your parts and scope.",
     cats: ["Warranty", "Billing"],
   },
   {
     q: "Can you install EV chargers?",
-    a: <>Yes — residential Level 2 chargers are one of our specialties. We’ll verify panel capacity and provide a clean, code-compliant install.</>,
+    a: "Yes — residential Level 2 chargers are one of our specialties. We’ll verify panel capacity and provide a clean, code-compliant install.",
     cats: ["Services", "EV"],
   },
   {
     q: "Do you handle panel upgrades?",
-    a: <>Yes. We replace outdated or unsafe panels and bring service up to modern code with clear, up-front pricing.</>,
+    a: "Yes. We replace outdated or unsafe panels and bring service up to modern code with clear, up-front pricing.",
     cats: ["Services"],
   },
   {
     q: "Are emergency visits available?",
-    a: <>Call {formatPhone(BRAND.phone)}. If it’s unsafe (burning smell, sparking, tripping main), shut power at the main breaker and contact us immediately.</>,
+    a: `Call ${formatPhone(
+      BRAND.phone
+    )}. If it’s unsafe (burning smell, sparking, tripping main), shut power at the main breaker and contact us immediately.`,
     cats: ["Scheduling", "Emergency"],
   },
 ];
@@ -83,7 +99,7 @@ const BASE_FAQ: FaqItem[] = [
 function slugify(s: string) {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
 }
-const ALL_CATS = Array.from(new Set(BASE_FAQ.flatMap(i => i.cats || []))).sort();
+const ALL_CATS = Array.from(new Set(BASE_FAQ.flatMap((i) => i.cats || []))).sort();
 
 export default function FAQPage() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
@@ -107,25 +123,21 @@ export default function FAQPage() {
     const term = q.trim().toLowerCase();
     return BASE_FAQ.filter((item) => {
       const inCat = activeCat === "All" || (item.cats || []).includes(activeCat);
-      const inText =
-        !term ||
-        item.q.toLowerCase().includes(term) ||
-        (typeof item.a === "string" ? item.a.toLowerCase().includes(term) : false);
+      const answerText = typeof item.a === "string" ? item.a : "";
+      const inText = !term || item.q.toLowerCase().includes(term) || answerText.toLowerCase().includes(term);
       return inCat && inText;
     });
   }, [q, activeCat]);
 
-  // JSON-LD for rich results
+  // JSON-LD for rich results (no `any`)
   const faqStructuredData = useMemo(() => {
     const items = BASE_FAQ.map((i) => ({
       "@type": "Question",
       name: i.q,
       acceptedAnswer: {
         "@type": "Answer",
-        text:
-          typeof i.a === "string"
-            ? i.a
-            : String((i.a as any)?.props?.children || "See site for details."),
+        // Only include text answers; JSX falls back to a safe generic line
+        text: typeof i.a === "string" ? i.a : "See site for details.",
       },
     }));
     return { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: items };
@@ -135,8 +147,11 @@ export default function FAQPage() {
 
   return (
     <>
-      <Script id="faq-jsonld" type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />
+      <Script
+        id="faq-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
 
       <TopBar theme={theme} setTheme={setTheme} />
 
@@ -146,7 +161,10 @@ export default function FAQPage() {
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">Frequently Asked Questions</h1>
           <p className="text-[var(--muted)] mt-2 max-w-2xl mx-auto">
             Quick answers about scheduling, pricing, licensing, and service options. Still unsure?{" "}
-            <Link href="/quote" className="underline">Request a free estimate</Link> or call us at {phonePretty}.
+            <Link href="/quote" className="underline">
+              Request a free estimate
+            </Link>{" "}
+            or call us at {phonePretty}.
           </p>
         </header>
 
@@ -162,6 +180,7 @@ export default function FAQPage() {
             <button
               className={`chip ${activeCat === "All" ? "bg-[var(--accent)] text-black" : ""}`}
               onClick={() => setActiveCat("All")}
+              type="button"
             >
               All
             </button>
@@ -170,6 +189,7 @@ export default function FAQPage() {
                 key={c}
                 className={`chip ${activeCat === c ? "bg-[var(--accent)] text-black" : ""}`}
                 onClick={() => setActiveCat(c)}
+                type="button"
               >
                 {c}
               </button>
@@ -205,7 +225,10 @@ export default function FAQPage() {
             {filtered.length === 0 && (
               <div className="md:col-span-2 text-center text-[var(--muted)] py-10">
                 No results. Try a different term or{" "}
-                <Link href="/quote" className="underline">request a quote</Link>.
+                <Link href="/quote" className="underline">
+                  request a quote
+                </Link>
+                .
               </div>
             )}
           </div>
@@ -218,15 +241,18 @@ export default function FAQPage() {
             <p className="text-sm text-[var(--muted)]">We’re happy to answer questions specific to your home.</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Link href="/#quote" className="btn btn-accent text-center">Get a Free Estimate</Link>
-            <Link href={BRAND.phoneHref} className="btn btn-outline text-center">
-              Call {phonePretty}
+            <Link href="/#quote" className="btn btn-accent text-center">
+              Get a Free Estimate
             </Link>
+            {/* tel: is correct to keep as <a> */}
+            <a href={BRAND.phoneHref} className="btn btn-outline text-center">
+              Call {phonePretty}
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Footer (same pattern as Home) */}
+      {/* Footer */}
       <footer id="footer" className="border-t border-[var(--card-br)] bg-[var(--bgElev)]">
         <div className="container py-10">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -235,19 +261,20 @@ export default function FAQPage() {
               <p className="text-sm text-[var(--muted)] mt-1">{BRAND.city}</p>
               <p className="text-sm text-[var(--muted)]">{BRAND.license}</p>
               <div className="flex gap-3 mt-4">
-                <Link
+                {/* tel/mail allowed as <a> */}
+                <a
                   href={BRAND.phoneHref}
                   className="text-sm font-medium text-[var(--fg)] hover:text-[var(--accent)] transition"
                 >
                   📞 {BRAND.phonePretty}
-                </Link>
+                </a>
                 {BRAND.emailHref && (
-                  <Link
+                  <a
                     href={BRAND.emailHref}
                     className="text-sm font-medium text-[var(--fg)] hover:text-[var(--accent)] transition"
                   >
                     ✉ Email Us
-                  </Link>
+                  </a>
                 )}
               </div>
             </div>
@@ -267,18 +294,46 @@ export default function FAQPage() {
             <div>
               <h4 className="font-semibold mb-2 text-[var(--fg)]">Navigation</h4>
               <ul className="space-y-1 text-[var(--muted)]">
-                <li><Link href="/services" className="hover:text-[var(--accent)]">Services</Link></li>
-                <li><Link href="/quote" className="hover:text-[var(--accent)]">Request Quote</Link></li>
-                <li><Link href="/faq" className="hover:text-[var(--accent)]">FAQ</Link></li>
-                <li><Link href="/service-area" className="hover:text-[var(--accent)]">Service Area</Link></li>
-                <li><Link href="/#top" className="hover:text-[var(--accent)]">Back to Top</Link></li>
+                <li>
+                  <Link href="/services" className="hover:text-[var(--accent)]">
+                    Services
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/quote" className="hover:text-[var(--accent)]">
+                    Request Quote
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/faq" className="hover:text-[var(--accent)]">
+                    FAQ
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/service-area" className="hover:text-[var(--accent)]">
+                    Service Area
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#top" className="hover:text-[var(--accent)]">
+                    Back to Top
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-2 text-[var(--fg)]">Legal</h4>
               <ul className="space-y-1 text-[var(--muted)]">
-                <li><Link href="/privacy" className="hover:text-[var(--accent)]">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="hover:text-[var(--accent)]">Terms of Service</Link></li>
+                <li>
+                  <Link href="/privacy" className="hover:text-[var(--accent)]">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms" className="hover:text-[var(--accent)]">
+                    Terms of Service
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
