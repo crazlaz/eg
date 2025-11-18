@@ -8,8 +8,6 @@ import TopBar from "../app/components/TopBar";
 import Hero from "../app/components/Hero";
 import Section from "../app/components/Section";
 import Card from "../app/components/Card";
-import Quote from "../app/components/Quote";
-import Faq from "../app/components/Faq";
 import "leaflet/dist/leaflet.css";
 import Image from "next/image";
 
@@ -20,45 +18,164 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import QuoteForm from "./components/QuoteForm";
 
-/* ---------- SERVICE DATA ---------- */
+/* ---------- SERVICE DATA (UPDATED WITH real1–real22.png) ---------- */
 const SERVICE_DATA: Record<
   string,
   { description: string; images: { src: string; alt: string }[] }
 > = {
   "Wiring & Rewiring": {
     description:
-      "From new construction to remodels, our expert wiring ensures safety, efficiency, and long-lasting performance in every connection.",
-    images: [{ src: "/7.PNG", alt: "Wiring project" }],
+      "From clean commercial conduit runs to full home rough-ins and remodels, we handle wiring that’s safe, code-compliant, and built to last.",
+    images: [
+      {
+        src: "/real1.png",
+        alt: "Commercial conduit and disconnects on a brick building",
+      },
+      {
+        src: "/real13.png",
+        alt: "Multiple exterior electrical panels neatly piped",
+      },
+      {
+        src: "/real2.png",
+        alt: "Open meter base and panel showing organized wiring",
+      },
+    ],
   },
   "Panels & Meters": {
     description:
-      "Power today’s appliances with confidence. We upgrade old panels and meters to modern systems that improve safety and reliability.",
-    images: [{ src: "/99.jpeg", alt: "Panel upgrade" }],
+      "Service upgrades, meter changes, and panel replacements done right — clean terminations, labeled circuits, and modern protection.",
+    images: [
+      {
+        src: "/real2.png",
+        alt: "Meter base and panel interior with breaker layout",
+      },
+      {
+        src: "/real15.png",
+        alt: "Service disconnects and meter for a modern home",
+      },
+      {
+        src: "/real6.png",
+        alt: "EG Electric service van parked at a panel upgrade job",
+      },
+    ],
   },
   "EV Chargers": {
     description:
-      "Charge at the speed of life. We install EV chargers that fit your vehicle and deliver fast, dependable charging at home.",
-    images: [{ src: "/ev.jpg", alt: "EV charger installation" }],
+      "Ready for your next vehicle. We install dedicated EV charging circuits and equipment, including integration with home backup and storage.",
+    images: [
+      {
+        src: "/real19.png",
+        alt: "Tesla Powerwall and electrical equipment on an exterior wall",
+      },
+      {
+        src: "/real2.png",
+        alt: "Panel and disconnect layout prepared for EV charging loads",
+      },
+    ],
   },
   Generators: {
     description:
-      "Be ready when the power fails. Our standby generators keep lights, HVAC, and essentials running no matter the storm.",
-    images: [{ src: "/gen.jpg", alt: "Backup generator" }],
+      "Automatic standby generators that keep your lights, HVAC, and essentials running when the grid goes down — installed, wired, and tested by pros.",
+    images: [
+      {
+        src: "/real3.png",
+        alt: "Generac standby generator installed outside a home",
+      },
+      {
+        src: "/real18.png",
+        alt: "EG Electric crew wiring a standby generator system",
+      },
+      {
+        src: "/real15.png",
+        alt: "Generator service disconnects and meter assembly",
+      },
+    ],
   },
   "Solar System Installations": {
     description:
-      "Harness the sun’s power with solar systems tailored to your home. Lower bills, reduce reliance on utilities, and invest in clean energy.",
-    images: [{ src: "/ss.JPG", alt: "Solar installation" }],
+      "Complete solar installs from roof arrays to inverters and interconnection. Clean layouts that look as good as they perform.",
+    images: [
+      {
+        src: "/real11.png",
+        alt: "Rooftop solar array with technician on the roof",
+      },
+      {
+        src: "/real14.png",
+        alt: "Flat-roof solar array installed on racking",
+      },
+      {
+        src: "/real13.png",
+        alt: "Exterior solar disconnects and equipment on a stone wall",
+      },
+    ],
   },
   "Lighting & Ceiling Fans": {
     description:
-      "Brighten your world. From elegant interior fixtures to durable outdoor lighting, plus ceiling fans for comfort and efficiency.",
-    images: [{ src: "/2.PNG", alt: "Lighting and ceiling fans" }],
+      "Luxury lighting, accent strips, recessed cans, and ceiling fans — from modern great rooms to custom closets, we make spaces feel finished.",
+    images: [
+      {
+        src: "/real4.png",
+        alt: "Long interior space with rows of recessed ceiling lights",
+      },
+      {
+        src: "/real5.png",
+        alt: "Large open kitchen and living area with coffered lit ceiling",
+      },
+      {
+        src: "/real16.png",
+        alt: "Staircase with step lighting and ceiling accent lights",
+      },
+      {
+        src: "/real17.png",
+        alt: "Two-story living room with feature lighting and tall fireplace",
+      },
+      {
+        src: "/real9.png",
+        alt: "Luxury bathroom with cove lighting around a freestanding tub",
+      },
+      {
+        src: "/real10.png",
+        alt: "Large vanity area with mirror and perimeter lighting",
+      },
+      {
+        src: "/real12.png",
+        alt: "Built-in cabinets with integrated shelf and under-cabinet lighting",
+      },
+      {
+        src: "/real20.png",
+        alt: "High-end kitchen with integrated task and accent lighting",
+      },
+      {
+        src: "/real21.png",
+        alt: "Floating staircase with vertical wall and floor lighting",
+      },
+      {
+        src: "/real22.png",
+        alt: "Custom closet with lit shelving and island display",
+      },
+    ],
   },
   Troubleshooting: {
     description:
-      "Electrical mystery? Solved. We diagnose and repair issues quickly, restoring safety and peace of mind without the guesswork.",
-    images: [{ src: "/ts.JPG", alt: "Troubleshooting electrical issues" }],
+      "Breakers tripping, lights flickering, outlets dead, or equipment acting up? We track down the fault and fix it safely and efficiently.",
+    images: [
+      {
+        src: "/real1.png",
+        alt: "Exterior electrical equipment ready for inspection and testing",
+      },
+      {
+        src: "/real2.png",
+        alt: "Open electrical gear during diagnostic work",
+      },
+      {
+        src: "/real18.png",
+        alt: "Technicians working on generator and panel wiring",
+      },
+      {
+        src: "/real6.png",
+        alt: "EG Electric van on site for a troubleshooting call",
+      },
+    ],
   },
 };
 
@@ -172,9 +289,6 @@ export default function Page() {
       <Hero theme={theme} setTheme={setTheme} />
       <div className="divider" />
 
-
-
-  
       {/* WHY US */}
       <Section title="Why Homeowners Choose EG ELECTRIC">
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -190,8 +304,6 @@ export default function Page() {
           </Card>
         </div>
       </Section>
-
-
 
       {/* SERVICE AREA */}
       <Section title="Proudly Serving The Carolinas!">
@@ -225,8 +337,6 @@ export default function Page() {
           </div>
         </div>
       </Section>
-
-
 
       {/* REQUEST SERVICE */}
       <section id="quote" className="container py-12">

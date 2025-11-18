@@ -67,13 +67,31 @@ function initials(name: string) {
 
 // small image gallery (reuse your existing public images)
 const HIGHLIGHT_IMGS = [
-  { src: "/7.PNG", alt: "Wiring project" },
-  { src: "/99.jpeg", alt: "Panel upgrade" },
-  { src: "/ev.jpg", alt: "EV charger install" },
-  { src: "/gen.jpg", alt: "Backup generator" },
-  { src: "/ss.JPG", alt: "Solar array install" },
-  { src: "/2.PNG", alt: "Lighting & fans" },
-  { src: "/ts.JPG", alt: "Troubleshooting" },
+  { src: "/real1.png", alt: "Wiring project" },
+  { src: "/real2.png", alt: "Panel upgrade" },
+  { src: "/real3.png", alt: "EV charger install" },
+  { src: "/real4.png", alt: "Backup generator" },
+  { src: "/real5.png", alt: "Solar array install" },
+  { src: "/real6.png", alt: "Lighting & fans" },
+  { src: "/real7.png", alt: "Troubleshooting" },
+
+  { src: "/real8.png", alt: "Wiring project" },
+  { src: "/real9.png", alt: "Panel upgrade" },
+  { src: "/real10.png", alt: "EV charger install" },
+  { src: "/real11.png", alt: "Backup generator" },
+  { src: "/real12.png", alt: "Solar array install" },
+  { src: "/real13.png", alt: "Lighting & fans" },
+  { src: "/real14.png", alt: "Troubleshooting" },
+
+  { src: "/real15.png", alt: "Wiring project" },
+  { src: "/real16.png", alt: "Panel upgrade" },
+  { src: "/real17.png", alt: "EV charger install" },
+  { src: "/real18.png", alt: "Backup generator" },
+  { src: "/real19.png", alt: "Solar array install" },
+  { src: "/real20.png", alt: "Lighting & fans" },
+
+  { src: "/real21.png", alt: "Troubleshooting" },
+  { src: "/real22.png", alt: "Wiring project" },
 ];
 
 export default function TestimonialsPage() {
