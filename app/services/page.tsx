@@ -13,8 +13,8 @@ const SERVICE_DATA: Record<
   {
     description: string;
     images: { src: string; alt: string }[];
-    tags?: string[];          // optional “spice” tags per service
-    featured?: boolean;       // show a small badge
+    tags?: string[]; // optional “spice” tags per service
+    featured?: boolean; // show a small badge
     category?: "Home" | "Power" | "Green" | "Repair";
   }
 > = {
@@ -22,7 +22,7 @@ const SERVICE_DATA: Record<
     description:
       "From new construction to remodels, our expert wiring ensures safety, efficiency, and long-lasting performance in every connection.",
     images: [{ src: "/7.PNG", alt: "Wiring project" }],
-    tags: ["Remodel", "New Build", "Code Safe"],
+    tags: ["Remodel", "New Build", "Custom Homes", "Code Safe"],
     featured: false,
     category: "Home",
   },
@@ -37,7 +37,7 @@ const SERVICE_DATA: Record<
   "EV Chargers": {
     description:
       "Charge at the speed of life. We install EV chargers that fit your vehicle and deliver fast, dependable charging at home.",
-    images: [{ src: "/ev.jpg", alt: "EV charger installation" }],
+    images: [{ src: "/real19.png", alt: "EV charger installation" }],
     tags: ["Tesla", "NACS/J1772", "Permits"],
     featured: true,
     category: "Green",
@@ -45,7 +45,7 @@ const SERVICE_DATA: Record<
   Generators: {
     description:
       "Be ready when the power fails. Our standby generators keep lights, HVAC, and essentials running no matter the storm.",
-    images: [{ src: "/gen.jpg", alt: "Backup generator" }],
+    images: [{ src: "/real15.png", alt: "Backup generator" }],
     tags: ["Standby", "Transfer Switch"],
     featured: false,
     category: "Power",
@@ -53,7 +53,7 @@ const SERVICE_DATA: Record<
   "Solar System Installations": {
     description:
       "Harness the sun’s power with solar systems tailored to your home. Lower bills, reduce reliance on utilities, and invest in clean energy.",
-    images: [{ src: "/ss.JPG", alt: "Solar installation" }],
+    images: [{ src: "/real14.png", alt: "Solar installation" }],
     tags: ["Net Metering", "Battery-Ready"],
     featured: false,
     category: "Green",
@@ -69,7 +69,7 @@ const SERVICE_DATA: Record<
   Troubleshooting: {
     description:
       "Electrical mystery? Solved. We diagnose and repair issues quickly, restoring safety and peace of mind without the guesswork.",
-    images: [{ src: "/ts.JPG", alt: "Troubleshooting electrical issues" }],
+    images: [{ src: "/real18.png", alt: "Troubleshooting electrical issues" }],
     tags: ["Diagnostics", "No Power", "Sparks/Smell"],
     featured: true,
     category: "Repair",
@@ -108,7 +108,7 @@ function ServiceModal({
       <div className="relative bg-[var(--bgElev)] rounded-xl shadow-2xl max-w-3xl w-full overflow-hidden border border-[var(--card-br)]">
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl"
+          className="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl z-10"
           aria-label="Close"
         >
           ✕
@@ -116,10 +116,15 @@ function ServiceModal({
 
         <div className="grid md:grid-cols-2 gap-6 p-6">
           <div className="relative rounded-xl overflow-hidden border border-[var(--card-br)]">
-            <img
+            {/* FIX: Use Next.js Image component for optimization and sharper resolution */}
+            <Image
               src={s.images[0].src}
               alt={s.images[0].alt}
+              width={600} // Base width for generating optimized image
+              height={400} // Base height for generating optimized image
+              sizes="(max-width: 768px) 100vw, 50vw" // Helps Next.js select the right size
               className="w-full h-56 md:h-72 object-cover"
+              priority={true} // Load this image with high priority since it's in a modal
             />
             <div className="absolute bottom-2 left-2 text-xs px-2 py-1 rounded bg-black/60 border border-white/10 text-white">
               {s.images[0].alt}
@@ -180,11 +185,14 @@ function ServiceCard({
         </span>
       )}
 
-      {/* Thumbnail */}
+      {/* Thumbnail - Using Next.js Image for optimization, but kept small */}
       <div className="relative h-28 md:h-32">
-        <img
+        <Image
           src={img.src}
           alt={img.alt}
+          width={400} // Optimized thumbnail size
+          height={150}
+          sizes="(max-width: 640px) 50vw, 33vw"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.05]"
           loading="lazy"
         />
@@ -337,7 +345,7 @@ export default function ServicesPage() {
             </label>
             <div className="flex flex-wrap pb-12 gap-2 md:justify-end">
               <button
-                className={classNames("chip", !cat && "ring-1  ring-[var(--accent)]")}
+                className={classNames("chip", !cat && "ring-1  ring-[var(--accent)]")}
                 onClick={() => setCat(null)}
               >
                 All
@@ -418,6 +426,7 @@ export default function ServicesPage() {
                 width={220}
                 height={80}
                 className="h-16 w-auto object-contain"
+                loading="lazy"
               />
             </div>
           </div>

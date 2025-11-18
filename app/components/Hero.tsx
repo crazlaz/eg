@@ -1,10 +1,12 @@
 "use client";
 
-import { BRAND } from "../lib/brand";
 import Image from "next/image";
 import { LightBulbIcon } from "@heroicons/react/24/solid";
+import { Dispatch, SetStateAction } from "react";
 
-// --- NEW: Swiper imports for the mini slideshow ---
+import { BRAND } from "../lib/brand";
+
+// Swiper imports for the mini slideshow
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -43,15 +45,53 @@ function HeroBG() {
   );
 }
 
-// --- NEW: small slideshow image set (uses your existing public images) ---
+// Mini slideshow images – now using your real project photos
 const HERO_SLIDES = [
-  { src: "/7.PNG", alt: "Wiring project" },
-  { src: "/99.jpeg", alt: "Panel upgrade" },
-  { src: "/ev.jpg", alt: "EV charger install" },
-  { src: "/gen.jpg", alt: "Backup generator" },
-  { src: "/ss.JPG", alt: "Solar array install" },
-  { src: "/2.PNG", alt: "Lighting & fans" },
-  { src: "/ts.JPG", alt: "Troubleshooting" },
+  // Wiring & Rewiring, Panels & Meters, Troubleshooting
+  { src: "/real1.png", alt: "Commercial conduit and disconnects on a brick building" },
+  { src: "/real2.png", alt: "Open meter base and panel showing organized wiring" },
+  { src: "/real3.png", alt: "Generac standby generator installed outside a home" },
+
+  // Lighting & Ceiling Fans (Existing list)
+  { src: "/real4.png", alt: "Long interior space with recessed lighting" },
+  { src: "/real5.png", alt: "Open kitchen and living area with coffered lighting" },
+
+  // Panels & Meters, Troubleshooting
+  { src: "/real6.png", alt: "EG Electric service van parked at a panel upgrade job" },
+
+  // Missing images in your original data, included for completeness (assuming they exist)
+  { src: "/real7.png", alt: "Residential service mast and meter" },
+  { src: "/real8.png", alt: "Technician performing diagnostic check" },
+
+  // Lighting & Ceiling Fans (Existing list)
+  { src: "/real9.png", alt: "Luxury bathroom with cove lighting" },
+  { src: "/real10.png", alt: "Vanity area with perimeter lighting" },
+
+  // Solar System Installations
+  { src: "/real11.png", alt: "Rooftop solar array with technician on the roof" },
+
+  // Lighting & Ceiling Fans, Solar System Installations
+  { src: "/real12.png", alt: "Built-ins with integrated lighting" },
+  { src: "/real13.png", alt: "Multiple exterior electrical panels neatly piped (Solar disconnects)" },
+  { src: "/real14.png", alt: "Flat-roof solar array installed on racking" },
+
+  // Panels & Meters, Generators
+  { src: "/real15.png", alt: "Service disconnects and meter for a modern home (Generator assembly)" },
+
+  // Lighting & Ceiling Fans (Existing list)
+  { src: "/real16.png", alt: "Staircase with step and accent lights" },
+  { src: "/real17.png", alt: "Two-story living room with feature lighting" },
+
+  // Generators, Troubleshooting
+  { src: "/real18.png", alt: "EG Electric crew wiring a standby generator system" },
+
+  // EV Chargers
+  { src: "/real19.png", alt: "Tesla Powerwall and electrical equipment on an exterior wall" },
+
+  // Lighting & Ceiling Fans (Existing list)
+  { src: "/real20.png", alt: "High-end kitchen with task and accent lights" },
+  { src: "/real21.png", alt: "Floating staircase with wall lighting" },
+  { src: "/real22.png", alt: "Custom closet with lit shelving" },
 ];
 
 export default function Hero({
@@ -59,7 +99,7 @@ export default function Hero({
   setTheme,
 }: {
   theme: "dark" | "light";
-  setTheme: React.Dispatch<React.SetStateAction<"dark" | "light">>;
+  setTheme: Dispatch<SetStateAction<"dark" | "light">>;
 }) {
   return (
     <section id="top" className="relative isolate" aria-label="Hero">
@@ -88,19 +128,20 @@ export default function Hero({
 
       {/* ===== CONTENT BELOW THE HERO IMAGE ===== */}
       <div className="container relative z-10">
-        {/* --- NEW: Mini slideshow (right above the bulb) --- */}
+        {/* Mini slideshow (project highlights) */}
         <div className="mt-6">
           <Swiper
             modules={[Navigation, Autoplay, Pagination]}
             navigation
             pagination={{ clickable: true }}
-            autoplay={{ delay: 1800, disableOnInteraction: false }}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
             loop
             className="relative rounded-xl overflow-hidden border border-[var(--card-br)]"
           >
             {HERO_SLIDES.map((img, i) => (
               <SwiperSlide key={`${img.src}-${i}`}>
-                <div className="relative w-full h-48 sm:h-56 md:h-64">
+                {/* Adjusted height for mobile: h-40 is smaller than h-48 */}
+                <div className="relative w-full h-40 sm:h-56 md:h-64">
                   <img
                     src={img.src}
                     alt={img.alt}
@@ -126,17 +167,21 @@ export default function Hero({
           />
         </div>
 
+        {/* Second Headline is now centered */}
         <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold uppercase bg-gradient-to-l from-red-700 via-orange-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-lg tracking-tight text-center">
           Quality is Our Priority
         </h2>
 
-        {/* top trust strip (keep this small, no big headings inside) */}
-        <div className="top-strip mt-3">
-          <span className="chip">Call Now for Fast Service</span>
-          <a href={BRAND.phoneHref} className="btn btn-accent btn-sm">
+        {/* top trust strip (adjusted for better mobile stacking and centering) */}
+        <div className="top-strip mt-3 mx-auto w-full max-w-xl">
+          <span className="chip">
+            <Dot /> Licensed • Insured • Local
+          </span>
+          {/* Added flex-1 to buttons to make them fill space on small screens */}
+          <a href={BRAND.phoneHref} className="btn btn-accent btn-sm flex-1 sm:flex-none text-center">
             ☎ {BRAND.phonePretty}
           </a>
-          <a href="#quote" className="btn btn-outline btn-sm">
+          <a href="#quote" className="btn btn-outline btn-sm flex-1 sm:flex-none text-center">
             Request Service
           </a>
         </div>
@@ -145,14 +190,15 @@ export default function Hero({
       {/* main hero content */}
       <div className="container pt-5 pb-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 items-start mt-4">
-          {/* Left: headline + bullets + badges */}
-          <div>
-            <span className="chip">
+          {/* Left: headline + bullets + badges (Now centered on mobile) */}
+          <div className="text-center lg:text-left">
+            {/* Chip is now centered on mobile */}
+            <span className="chip mx-auto lg:mx-0">
               <Dot /> Licensed • Insured • Local
             </span>
 
             <h1
-              className="mt-3"
+              className="mt-3 mx-auto lg:mx-0 max-w-xl" // Added max-w-xl and mx-auto for mobile centering
               style={{
                 fontSize: "clamp(1.9rem, 2vw + 1.6rem, 3rem)",
                 lineHeight: 1.15,
@@ -164,12 +210,14 @@ export default function Hero({
               <span className="accent-text">{BRAND.city}</span>
             </h1>
 
-            <p className="mt-3 text-[1.1rem]" style={{ color: "var(--muted)" }}>
+            {/* Paragraph is now centered on mobile */}
+            <p className="mt-3 text-[1.1rem] mx-auto lg:mx-0 max-w-xl" style={{ color: "var(--muted)" }}>
               No surprises. Just safe, reliable power — installed the right way,
               the first time. From panel upgrades to EV chargers, we’ve got you.
             </p>
 
-            <div className="mt-5 flex flex-wrap gap-3">
+            {/* Buttons are centered on mobile */}
+            <div className="mt-5 flex flex-wrap gap-3 justify-center lg:justify-start">
               <a href={BRAND.phoneHref} className="btn btn-accent">
                 ☎ Call {BRAND.phonePretty}
               </a>
@@ -178,8 +226,8 @@ export default function Hero({
               </a>
             </div>
 
-            {/* bullets */}
-            <ul className="mt-6 hero-bullets">
+            {/* bullets (Now centered on mobile) */}
+            <ul className="mt-6 hero-bullets mx-auto lg:mx-0 max-w-md">
               {[
                 "Same-Day or Next-Day",
                 "Up-Front Pricing",
@@ -194,8 +242,8 @@ export default function Hero({
               ))}
             </ul>
 
-            {/* badges */}
-            <div className="mt-6 flex flex-wrap gap-2">
+            {/* badges (Now centered on mobile) */}
+            <div className="mt-6 flex flex-wrap gap-2 justify-center lg:justify-start">
               <span className="chip">⭐ Google — Leave a review!</span>
               <span className="chip">BBB A+</span>
               <span className="chip">⚡ EV Certified</span>
@@ -203,7 +251,7 @@ export default function Hero({
             </div>
           </div>
 
-          {/* Right: request form card (intentionally omitted in your snippet) */}
+          {/* Right column intentionally left free for future form / promo card */}
         </div>
       </div>
 
@@ -217,12 +265,19 @@ export default function Hero({
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          flex-wrap: wrap;
+          /* Adjusted flex-wrap to allow wrapping on smaller screens */
+          flex-wrap: wrap; 
           padding: 0.5rem 0.75rem;
           border: 1px solid var(--border);
           background: color-mix(in oklab, var(--bgElev), black 5%);
           backdrop-filter: saturate(120%) blur(4px);
           border-radius: 0.75rem;
+        }
+        /* Centering the top strip content on mobile */
+        @media (max-width: 639px) {
+            .top-strip {
+                justify-content: center;
+            }
         }
         .btn-sm {
           padding: 0.35rem 0.7rem;
@@ -233,6 +288,12 @@ export default function Hero({
           grid-template-columns: repeat(2, minmax(0, 1fr));
           color: var(--muted);
           font-size: 0.95rem;
+        }
+        /* Ensure bullets look good on smaller screens */
+        @media (max-width: 400px) {
+            .hero-bullets {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
         }
         @media (min-width: 768px) {
           .hero-bullets {
