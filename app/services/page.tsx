@@ -37,7 +37,7 @@ const SERVICE_DATA: Record<
   "EV Chargers": {
     description:
       "Charge at the speed of life. We install EV chargers that fit your vehicle and deliver fast, dependable charging at home.",
-    images: [{ src: "/real19.png", alt: "EV charger installation" }],
+    images: [{ src: "/ev.jpg", alt: "EV charger installation" }],
     tags: ["Tesla", "NACS/J1772", "Permits"],
     featured: true,
     category: "Green",
