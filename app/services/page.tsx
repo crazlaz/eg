@@ -29,7 +29,7 @@ const SERVICE_DATA: Record<
   "Panels & Meters": {
     description:
       "Power today’s appliances with confidence. We upgrade old panels and meters to modern systems that improve safety and reliability.",
-    images: [{ src: "/99.jpeg", alt: "Panel upgrade" }],
+    images: [{ src: "/real1.png", alt: "Panel upgrade" }],
     tags: ["Upgrades", "Breaker Issues"],
     featured: true,
     category: "Power",
@@ -45,7 +45,7 @@ const SERVICE_DATA: Record<
   Generators: {
     description:
       "Be ready when the power fails. Our standby generators keep lights, HVAC, and essentials running no matter the storm.",
-    images: [{ src: "/real15.png", alt: "Backup generator" }],
+    images: [{ src: "/real111.jpg", alt: "Backup generator" }],
     tags: ["Standby", "Transfer Switch"],
     featured: false,
     category: "Power",
